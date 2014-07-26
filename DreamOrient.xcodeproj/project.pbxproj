@@ -1,0 +1,438 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		62C612D71980D31E005200D4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C612D61980D31E005200D4 /* AppDelegate.swift */; };
+		62C612DA1980D31E005200D4 /* DreamOrient.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 62C612D81980D31E005200D4 /* DreamOrient.xcdatamodeld */; };
+		62C612DC1980D31E005200D4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 62C612DB1980D31E005200D4 /* Images.xcassets */; };
+		62C612E81980D31E005200D4 /* DreamOrientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C612E71980D31E005200D4 /* DreamOrientTests.swift */; };
+		62D6586819837E6C0002D4D3 /* Rule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D6586719837E6C0002D4D3 /* Rule.swift */; };
+		62D6586A19837E6D0002D4D3 /* Dream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D6586919837E6D0002D4D3 /* Dream.swift */; };
+		62D6586C19837EC80002D4D3 /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D6586B19837EC80002D4D3 /* CoreDataHelper.swift */; };
+		62D6586E19837F000002D4D3 /* CoreDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D6586D19837F000002D4D3 /* CoreDataStore.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		62C612E21980D31E005200D4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 62C612C91980D31E005200D4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 62C612D01980D31E005200D4;
+			remoteInfo = DreamOrient;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		62C612D11980D31E005200D4 /* DreamOrient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DreamOrient.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		62C612D51980D31E005200D4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		62C612D61980D31E005200D4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		62C612D91980D31E005200D4 /* DreamOrient.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DreamOrient.xcdatamodel; sourceTree = "<group>"; };
+		62C612DB1980D31E005200D4 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		62C612E11980D31E005200D4 /* DreamOrientTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DreamOrientTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		62C612E61980D31E005200D4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		62C612E71980D31E005200D4 /* DreamOrientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DreamOrientTests.swift; sourceTree = "<group>"; };
+		62D6586719837E6C0002D4D3 /* Rule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rule.swift; sourceTree = "<group>"; };
+		62D6586919837E6D0002D4D3 /* Dream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dream.swift; sourceTree = "<group>"; };
+		62D6586B19837EC80002D4D3 /* CoreDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
+		62D6586D19837F000002D4D3 /* CoreDataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStore.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		62C612CE1980D31E005200D4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		62C612DE1980D31E005200D4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		62C612C81980D31E005200D4 = {
+			isa = PBXGroup;
+			children = (
+				62C612D31980D31E005200D4 /* DreamOrient */,
+				62C612E41980D31E005200D4 /* DreamOrientTests */,
+				62C612D21980D31E005200D4 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		62C612D21980D31E005200D4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				62C612D11980D31E005200D4 /* DreamOrient.app */,
+				62C612E11980D31E005200D4 /* DreamOrientTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		62C612D31980D31E005200D4 /* DreamOrient */ = {
+			isa = PBXGroup;
+			children = (
+				62D6586619837E240002D4D3 /* models */,
+				62C612D61980D31E005200D4 /* AppDelegate.swift */,
+				62D6586B19837EC80002D4D3 /* CoreDataHelper.swift */,
+				62D6586D19837F000002D4D3 /* CoreDataStore.swift */,
+				62C612DB1980D31E005200D4 /* Images.xcassets */,
+				62C612D81980D31E005200D4 /* DreamOrient.xcdatamodeld */,
+				62C612D41980D31E005200D4 /* Supporting Files */,
+			);
+			path = DreamOrient;
+			sourceTree = "<group>";
+		};
+		62C612D41980D31E005200D4 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				62C612D51980D31E005200D4 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		62C612E41980D31E005200D4 /* DreamOrientTests */ = {
+			isa = PBXGroup;
+			children = (
+				62C612E71980D31E005200D4 /* DreamOrientTests.swift */,
+				62C612E51980D31E005200D4 /* Supporting Files */,
+			);
+			path = DreamOrientTests;
+			sourceTree = "<group>";
+		};
+		62C612E51980D31E005200D4 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				62C612E61980D31E005200D4 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		62D6586619837E240002D4D3 /* models */ = {
+			isa = PBXGroup;
+			children = (
+				62D6586919837E6D0002D4D3 /* Dream.swift */,
+				62D6586719837E6C0002D4D3 /* Rule.swift */,
+			);
+			name = models;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		62C612D01980D31E005200D4 /* DreamOrient */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 62C612EB1980D31E005200D4 /* Build configuration list for PBXNativeTarget "DreamOrient" */;
+			buildPhases = (
+				62C612CD1980D31E005200D4 /* Sources */,
+				62C612CE1980D31E005200D4 /* Frameworks */,
+				62C612CF1980D31E005200D4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DreamOrient;
+			productName = DreamOrient;
+			productReference = 62C612D11980D31E005200D4 /* DreamOrient.app */;
+			productType = "com.apple.product-type.application";
+		};
+		62C612E01980D31E005200D4 /* DreamOrientTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 62C612EE1980D31E005200D4 /* Build configuration list for PBXNativeTarget "DreamOrientTests" */;
+			buildPhases = (
+				62C612DD1980D31E005200D4 /* Sources */,
+				62C612DE1980D31E005200D4 /* Frameworks */,
+				62C612DF1980D31E005200D4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				62C612E31980D31E005200D4 /* PBXTargetDependency */,
+			);
+			name = DreamOrientTests;
+			productName = DreamOrientTests;
+			productReference = 62C612E11980D31E005200D4 /* DreamOrientTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		62C612C91980D31E005200D4 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0600;
+				ORGANIZATIONNAME = "Weimed LLC (weimed.com)";
+				TargetAttributes = {
+					62C612D01980D31E005200D4 = {
+						CreatedOnToolsVersion = 6.0;
+					};
+					62C612E01980D31E005200D4 = {
+						CreatedOnToolsVersion = 6.0;
+						TestTargetID = 62C612D01980D31E005200D4;
+					};
+				};
+			};
+			buildConfigurationList = 62C612CC1980D31E005200D4 /* Build configuration list for PBXProject "DreamOrient" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 62C612C81980D31E005200D4;
+			productRefGroup = 62C612D21980D31E005200D4 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				62C612D01980D31E005200D4 /* DreamOrient */,
+				62C612E01980D31E005200D4 /* DreamOrientTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		62C612CF1980D31E005200D4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				62C612DC1980D31E005200D4 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		62C612DF1980D31E005200D4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		62C612CD1980D31E005200D4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				62D6586E19837F000002D4D3 /* CoreDataStore.swift in Sources */,
+				62D6586C19837EC80002D4D3 /* CoreDataHelper.swift in Sources */,
+				62D6586819837E6C0002D4D3 /* Rule.swift in Sources */,
+				62C612DA1980D31E005200D4 /* DreamOrient.xcdatamodeld in Sources */,
+				62C612D71980D31E005200D4 /* AppDelegate.swift in Sources */,
+				62D6586A19837E6D0002D4D3 /* Dream.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		62C612DD1980D31E005200D4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				62C612E81980D31E005200D4 /* DreamOrientTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		62C612E31980D31E005200D4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 62C612D01980D31E005200D4 /* DreamOrient */;
+			targetProxy = 62C612E21980D31E005200D4 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		62C612E91980D31E005200D4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				METAL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		62C612EA1980D31E005200D4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				METAL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		62C612EC1980D31E005200D4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
+				INFOPLIST_FILE = DreamOrient/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		62C612ED1980D31E005200D4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
+				INFOPLIST_FILE = DreamOrient/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		62C612EF1980D31E005200D4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/DreamOrient.app/DreamOrient";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = DreamOrientTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				METAL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+			};
+			name = Debug;
+		};
+		62C612F01980D31E005200D4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/DreamOrient.app/DreamOrient";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = DreamOrientTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				METAL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		62C612CC1980D31E005200D4 /* Build configuration list for PBXProject "DreamOrient" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				62C612E91980D31E005200D4 /* Debug */,
+				62C612EA1980D31E005200D4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		62C612EB1980D31E005200D4 /* Build configuration list for PBXNativeTarget "DreamOrient" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				62C612EC1980D31E005200D4 /* Debug */,
+				62C612ED1980D31E005200D4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		62C612EE1980D31E005200D4 /* Build configuration list for PBXNativeTarget "DreamOrientTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				62C612EF1980D31E005200D4 /* Debug */,
+				62C612F01980D31E005200D4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		62C612D81980D31E005200D4 /* DreamOrient.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				62C612D91980D31E005200D4 /* DreamOrient.xcdatamodel */,
+			);
+			currentVersion = 62C612D91980D31E005200D4 /* DreamOrient.xcdatamodel */;
+			path = DreamOrient.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 62C612C91980D31E005200D4 /* Project object */;
+}
