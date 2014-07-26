@@ -41,6 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        self.demoDream()
         self.demoRule()
     }
 
@@ -164,9 +165,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         for newItemName in newItemNames {
             var newItem: Dream = NSEntityDescription.insertNewObjectForEntityForName("Dream", inManagedObjectContext: self.cdhelper.backgroundContext) as Dream
             
-            newItem.subject = newItemName
+            newItem.name = newItemName
             newItem.credits = 20
-            NSLog("Inserted New Dream for \(newItem.subject) + \(newItem.credits) ")
+            newItem.entityId = NSUUID.UUID().UUIDString
+            NSLog("Inserted New Dream for \(newItem.name) + \(newItem.credits) + \(newItem.entityId) ")
         }
         
         self.cdhelper.saveContext(self.cdhelper.backgroundContext)
@@ -178,16 +180,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var fReq: NSFetchRequest = NSFetchRequest(entityName: "Dream")
         
         // set filter
-        fReq.predicate = NSPredicate(format:"subject CONTAINS 'B' ")
+        fReq.predicate = NSPredicate(format:"name CONTAINS 'B' ")
         
         // set result sorter
-        var sorter: NSSortDescriptor = NSSortDescriptor(key: "subject" , ascending: false)
+        var sorter: NSSortDescriptor = NSSortDescriptor(key: "name" , ascending: false)
         fReq.sortDescriptors = [sorter]
         
         var result = self.cdhelper.managedObjectContext.executeFetchRequest(fReq, error:&error)
         for resultItem : AnyObject in result {
-            var dreamItem = resultItem as Dream
-            NSLog("Fetched Dream for \(dreamItem.subject) + \(dreamItem.credits) ")
+            var newItem = resultItem as Dream
+            NSLog("Fetched Dream for \(newItem.name) + \(newItem.credits) + \(newItem.entityId)")
         }
         
         //delete dreams
@@ -197,9 +199,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         result = self.cdhelper.backgroundContext.executeFetchRequest(fReq, error:&error)
         
         for resultItem : AnyObject in result {
-            var dreamItem = resultItem as Dream
-            NSLog("Deleted Dream for \(dreamItem.subject) + \(dreamItem.credits) ")
-            self.cdhelper.backgroundContext.deleteObject(dreamItem)
+            var newItem = resultItem as Dream
+            NSLog("Deleted Dream for \(newItem.name) + \(newItem.credits) ")
+            self.cdhelper.backgroundContext.deleteObject(newItem)
         }
         
         self.cdhelper.saveContext(self.cdhelper.backgroundContext)
@@ -212,8 +214,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         else{
             for resultItem : AnyObject in result {
-                var dreamItem = resultItem as Dream
-                NSLog("Fetched Error Dream for \(dreamItem.subject) ")
+                var newItem = resultItem as Dream
+                NSLog("Fetched Error Dream for \(newItem.name) ")
             }
         }
     }
@@ -265,7 +267,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         for resultItem : AnyObject in result {
             var newItem = resultItem as Rule
-            NSLog("Deleted Dream for \(newItem.name) + \(newItem.credits) ")
+            NSLog("Deleted Rule for \(newItem.name) + \(newItem.credits) ")
             self.cdhelper.backgroundContext.deleteObject(newItem)
         }
         

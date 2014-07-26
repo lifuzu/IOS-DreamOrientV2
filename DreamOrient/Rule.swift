@@ -19,4 +19,6 @@ class Rule: NSManagedObject {
     @NSManaged var createdAt: NSDate
     @NSManaged var modifiedAt: NSDate
 
+    //One to One relationship in data model
+    @NSManaged var dream: Dream
 }

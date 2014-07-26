@@ -12,7 +12,10 @@ import CoreData
 @objc(Dream)
 class Dream: NSManagedObject {
 
-    @NSManaged var subject: String
+    @NSManaged var name: String
     @NSManaged var credits: NSNumber
+    @NSManaged var entityId: String
 
+    //One to Many relationship in data model
+    @NSManaged var rules: NSMutableSet
 }
