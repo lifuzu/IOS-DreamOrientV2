@@ -2,7 +2,7 @@
 //  Rule.swift
 //  DreamOrient
 //
-//  Created by Richard Lee on 7/25/14.
+//  Created by Richard Lee on 7/26/14.
 //  Copyright (c) 2014 Weimed LLC (weimed.com). All rights reserved.
 //
 
@@ -18,7 +18,6 @@ class Rule: NSManagedObject {
     @NSManaged var entityId: String
     @NSManaged var createdAt: NSDate
     @NSManaged var modifiedAt: NSDate
-
-    //One to One relationship in data model
     @NSManaged var dream: Dream
+
 }

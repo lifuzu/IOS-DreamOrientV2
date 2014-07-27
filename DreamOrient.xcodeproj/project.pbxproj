@@ -11,11 +11,10 @@
 		62C612DA1980D31E005200D4 /* DreamOrient.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 62C612D81980D31E005200D4 /* DreamOrient.xcdatamodeld */; };
 		62C612DC1980D31E005200D4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 62C612DB1980D31E005200D4 /* Images.xcassets */; };
 		62C612E81980D31E005200D4 /* DreamOrientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C612E71980D31E005200D4 /* DreamOrientTests.swift */; };
-		62D6586819837E6C0002D4D3 /* Rule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D6586719837E6C0002D4D3 /* Rule.swift */; };
-		62D6586A19837E6D0002D4D3 /* Dream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D6586919837E6D0002D4D3 /* Dream.swift */; };
 		62D6586C19837EC80002D4D3 /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D6586B19837EC80002D4D3 /* CoreDataHelper.swift */; };
 		62D6586E19837F000002D4D3 /* CoreDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D6586D19837F000002D4D3 /* CoreDataStore.swift */; };
-		62D65870198400C60002D4D3 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D6586F198400C60002D4D3 /* Extensions.swift */; };
+		62D6587A19841C6A0002D4D3 /* Dream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D6587919841C6A0002D4D3 /* Dream.swift */; };
+		62D6587C19841C6B0002D4D3 /* Rule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D6587B19841C6B0002D4D3 /* Rule.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,11 +36,10 @@
 		62C612E11980D31E005200D4 /* DreamOrientTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DreamOrientTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		62C612E61980D31E005200D4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		62C612E71980D31E005200D4 /* DreamOrientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DreamOrientTests.swift; sourceTree = "<group>"; };
-		62D6586719837E6C0002D4D3 /* Rule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rule.swift; sourceTree = "<group>"; };
-		62D6586919837E6D0002D4D3 /* Dream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dream.swift; sourceTree = "<group>"; };
 		62D6586B19837EC80002D4D3 /* CoreDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
 		62D6586D19837F000002D4D3 /* CoreDataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStore.swift; sourceTree = "<group>"; };
-		62D6586F198400C60002D4D3 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		62D6587919841C6A0002D4D3 /* Dream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dream.swift; sourceTree = "<group>"; };
+		62D6587B19841C6B0002D4D3 /* Rule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rule.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,9 +120,8 @@
 		62D6586619837E240002D4D3 /* models */ = {
 			isa = PBXGroup;
 			children = (
-				62D6586919837E6D0002D4D3 /* Dream.swift */,
-				62D6586719837E6C0002D4D3 /* Rule.swift */,
-				62D6586F198400C60002D4D3 /* Extensions.swift */,
+				62D6587B19841C6B0002D4D3 /* Rule.swift */,
+				62D6587919841C6A0002D4D3 /* Dream.swift */,
 			);
 			name = models;
 			sourceTree = "<group>";
@@ -228,11 +225,10 @@
 			files = (
 				62D6586E19837F000002D4D3 /* CoreDataStore.swift in Sources */,
 				62D6586C19837EC80002D4D3 /* CoreDataHelper.swift in Sources */,
-				62D6586819837E6C0002D4D3 /* Rule.swift in Sources */,
 				62C612DA1980D31E005200D4 /* DreamOrient.xcdatamodeld in Sources */,
 				62C612D71980D31E005200D4 /* AppDelegate.swift in Sources */,
-				62D6586A19837E6D0002D4D3 /* Dream.swift in Sources */,
-				62D65870198400C60002D4D3 /* Extensions.swift in Sources */,
+				62D6587A19841C6A0002D4D3 /* Dream.swift in Sources */,
+				62D6587C19841C6B0002D4D3 /* Rule.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

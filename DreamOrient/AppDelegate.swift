@@ -43,6 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
         self.demoDream()
         self.demoRule()
+        self.demoRelationship()
     }
 
     func applicationWillTerminate(application: UIApplication) {
@@ -284,6 +285,85 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 var newItem = resultItem as Rule
                 NSLog("Fetched Error Rule for \(newItem.name) ")
             }
+        }
+    }
+
+    func demoRelationship() {
+
+        // create two rules
+        var newRule1: Rule = NSEntityDescription.insertNewObjectForEntityForName("Rule", inManagedObjectContext: self.cdhelper.backgroundContext) as Rule
+
+        newRule1.name = "one rule"
+        newRule1.credits = 2
+        newRule1.desc = newRule1.name + "\(newRule1.credits)"
+        newRule1.entityId = NSUUID.UUID().UUIDString
+        newRule1.createdAt = NSDate.date()
+        newRule1.modifiedAt = newRule1.createdAt
+        NSLog("Created One New Rule for \(newRule1.name) + \(newRule1.credits) + \(newRule1.entityId)")
+        self.cdhelper.saveContext(self.cdhelper.backgroundContext)
+
+        var newRule2: Rule = NSEntityDescription.insertNewObjectForEntityForName("Rule", inManagedObjectContext: self.cdhelper.backgroundContext) as Rule
+
+        newRule2.name = "another rule"
+        newRule2.credits = 3
+        newRule2.desc = newRule2.name + "\(newRule2.credits)"
+        newRule2.entityId = NSUUID.UUID().UUIDString
+        newRule2.createdAt = NSDate.date()
+        newRule2.modifiedAt = newRule2.createdAt
+        NSLog("Created Another New Rule for \(newRule2.name) + \(newRule2.credits) + \(newRule2.entityId)")
+        self.cdhelper.saveContext(self.cdhelper.backgroundContext)
+
+        // create a dream
+        var newDream: Dream = NSEntityDescription.insertNewObjectForEntityForName("Dream", inManagedObjectContext: self.cdhelper.backgroundContext) as Dream
+
+        newDream.name = "a new dream"
+        newDream.credits = 20
+        newDream.entityId = NSUUID.UUID().UUIDString
+        NSLog("Created A New Dream for \(newDream.name) + \(newDream.credits) + \(newDream.entityId) ")
+        self.cdhelper.saveContext(self.cdhelper.backgroundContext)
+
+        // setup a relationship
+        newDream.rules.removeAllObjects()
+        newDream.rules.addObject(newRule1)
+        self.cdhelper.saveContext(self.cdhelper.backgroundContext)
+
+        // check the relationship
+        NSLog("Relationship count: \(newDream.rules.count)")
+        for rule : AnyObject in newDream.rules {
+            let ruleItem = rule as Rule
+            NSLog("Check the relationship: \(ruleItem.name)")
+        }
+
+        newDream.rules.removeObject(newRule1)
+        newDream.rules.addObjectsFromArray([newRule1, newRule2])
+        //self.cdhelper.saveContext(self.cdhelper.backgroundContext)
+
+        // check the relationship
+        NSLog("Relationship count: \(newDream.rules.count)")
+        for rule : AnyObject in newDream.rules {
+            let ruleItem = rule as Rule
+            NSLog("Check the relationship: \(ruleItem.name)")
+        }
+
+        var fReq: NSFetchRequest = NSFetchRequest(entityName: "Rule")
+        var error: NSError? = nil
+        // set filter
+        let stringDreamNameBegin = "a"
+        fReq.predicate = NSPredicate(format:"ANY dream.name BEGINSWITH[c] %@", stringDreamNameBegin)
+
+        // set result sorter
+        var sorter: NSSortDescriptor = NSSortDescriptor(key: "name" , ascending: false)
+        fReq.sortDescriptors = [sorter]
+
+        var result = self.cdhelper.backgroundContext.executeFetchRequest(fReq, error:&error)
+        for resultItem : AnyObject in result {
+            var newItem = resultItem as Rule
+            NSLog("Fetched Rule for \(newItem.name) + \(newItem.credits) + \(newItem.entityId)")
+            /*NSLog("Relationship count: \(newItem.rules.count)")
+            for rule : AnyObject in newItem.rules {
+                let ruleItem = rule as Rule
+                NSLog("Check the relationship: \(ruleItem.name)")
+            }*/
         }
     }
 }

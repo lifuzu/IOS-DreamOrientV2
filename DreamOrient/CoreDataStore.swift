@@ -30,6 +30,7 @@ class CoreDataStore: NSObject{
     var persistentStoreCoordinator: NSPersistentStoreCoordinator {
         if !_persistentStoreCoordinator {
             let storeURL = self.applicationDocumentsDirectory.URLByAppendingPathComponent(storeFilename)
+            println(storeURL)
             var error: NSError? = nil
             _persistentStoreCoordinator = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
             if _persistentStoreCoordinator!.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: storeURL, options: nil, error: &error) == nil {
