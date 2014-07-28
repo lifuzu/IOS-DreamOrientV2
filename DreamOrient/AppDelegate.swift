@@ -316,7 +316,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // create a dream
         var newDream: Dream = NSEntityDescription.insertNewObjectForEntityForName("Dream", inManagedObjectContext: self.cdhelper.backgroundContext) as Dream
 
-        newDream.name = "a new dream"
+        newDream.name = "anew dream"
         newDream.credits = 20
         newDream.entityId = NSUUID.UUID().UUIDString
         NSLog("Created A New Dream for \(newDream.name) + \(newDream.credits) + \(newDream.entityId) ")
@@ -336,7 +336,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         newDream.rules.removeObject(newRule1)
         newDream.rules.addObjectsFromArray([newRule1, newRule2])
-        //self.cdhelper.saveContext(self.cdhelper.backgroundContext)
+        self.cdhelper.saveContext(self.cdhelper.backgroundContext)
 
         // check the relationship
         NSLog("Relationship count: \(newDream.rules.count)")
@@ -348,14 +348,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var fReq: NSFetchRequest = NSFetchRequest(entityName: "Rule")
         var error: NSError? = nil
         // set filter
-        let stringDreamNameBegin = "a"
-        fReq.predicate = NSPredicate(format:"ANY dream.name BEGINSWITH[c] %@", stringDreamNameBegin)
+        //let stringDreamNameBegin = "anew dream"
+        //fReq.predicate = NSPredicate(format:"ANY dream.name like 'anew dream'")
 
         // set result sorter
         var sorter: NSSortDescriptor = NSSortDescriptor(key: "name" , ascending: false)
         fReq.sortDescriptors = [sorter]
 
         var result = self.cdhelper.backgroundContext.executeFetchRequest(fReq, error:&error)
+        NSLog("fetched count: \(result.count)")
         for resultItem : AnyObject in result {
             var newItem = resultItem as Rule
             NSLog("Fetched Rule for \(newItem.name) + \(newItem.credits) + \(newItem.entityId)")
@@ -364,6 +365,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 let ruleItem = rule as Rule
                 NSLog("Check the relationship: \(ruleItem.name)")
             }*/
+        }
+
+        fReq = NSFetchRequest(entityName: "Dream")
+        error = nil
+        // set filter
+        let stringDreamNameBegin = "anew dream"
+        fReq.predicate = NSPredicate(format:"ANY name like %@", stringDreamNameBegin)
+
+        // set result sorter
+        sorter = NSSortDescriptor(key: "name" , ascending: false)
+        fReq.sortDescriptors = [sorter]
+
+        result = self.cdhelper.backgroundContext.executeFetchRequest(fReq, error:&error)
+        NSLog("fetched count: \(result.count)")
+        for resultItem : AnyObject in result {
+            var newItem = resultItem as Dream
+            NSLog("Fetched Rule for \(newItem.name) + \(newItem.credits) + \(newItem.entityId)")
+            NSLog("Relationship count: \(newItem.rules.count)")
+            for rule : AnyObject in newItem.rules {
+            let ruleItem = rule as Rule
+            NSLog("Check the relationship: \(ruleItem.name) + \(ruleItem.credits) + \(ruleItem.entityId)")
+            }
         }
     }
 }
