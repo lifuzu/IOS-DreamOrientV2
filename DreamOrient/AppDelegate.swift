@@ -43,6 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
         self.demoDream()
         self.demoRule()
+        self.demoActor()
         self.demoRelationship()
     }
 
@@ -288,6 +289,70 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
 
+    func demoActor() {
+        var newItemNames = ["Apples", "Milk", "Bread", "Cheese", "Sausages", "Butter", "Orange Juice", "Cereal", "Coffee", "Eggs", "Tomatoes", "Fish"]
+        
+        // add actors
+        NSLog(" ======== Insert ======== ")
+        
+        for newItemName in newItemNames {
+            var newItem: Actor = NSEntityDescription.insertNewObjectForEntityForName("Actor", inManagedObjectContext: self.cdhelper.backgroundContext) as Actor
+            
+            newItem.name = newItemName
+            newItem.credits = 5
+            newItem.entityId = NSUUID.UUID().UUIDString
+            NSLog("Inserted New Actor for \(newItem.name) + \(newItem.credits) + \(newItem.entityId)")
+        }
+        
+        self.cdhelper.saveContext(self.cdhelper.backgroundContext)
+        
+        //fetch actors
+        NSLog(" ======== Fetch ======== ")
+        
+        var error: NSError? = nil
+        var fReq: NSFetchRequest = NSFetchRequest(entityName: "Actor")
+        
+        // set filter
+        fReq.predicate = NSPredicate(format:"name CONTAINS 'B' ")
+        
+        // set result sorter
+        var sorter: NSSortDescriptor = NSSortDescriptor(key: "name" , ascending: false)
+        fReq.sortDescriptors = [sorter]
+        
+        var result = self.cdhelper.managedObjectContext.executeFetchRequest(fReq, error:&error)
+        for resultItem : AnyObject in result {
+            var newItem = resultItem as Actor
+            NSLog("Fetched Actor for \(newItem.name) + \(newItem.credits) + \(newItem.entityId)")
+        }
+        
+        //delete actors
+        NSLog(" ======== Delete ======== ")
+        
+        fReq = NSFetchRequest(entityName: "Actor")
+        result = self.cdhelper.backgroundContext.executeFetchRequest(fReq, error:&error)
+        
+        for resultItem : AnyObject in result {
+            var newItem = resultItem as Actor
+            NSLog("Deleted Actor for \(newItem.name) + \(newItem.credits) ")
+            self.cdhelper.backgroundContext.deleteObject(newItem)
+        }
+        
+        self.cdhelper.saveContext(self.cdhelper.backgroundContext)
+        
+        NSLog(" ======== Check Delete ======== ")
+        
+        result = self.cdhelper.managedObjectContext.executeFetchRequest(fReq, error:&error)
+        if result.isEmpty {
+            NSLog("Deleted All Rules")
+        }
+        else{
+            for resultItem : AnyObject in result {
+                var newItem = resultItem as Actor
+                NSLog("Fetched Error Actor for \(newItem.name) ")
+            }
+        }
+    }
+
     func demoRelationship() {
 
         // create two rules
@@ -327,13 +392,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         newDream.rules.addObject(newRule1)
         self.cdhelper.saveContext(self.cdhelper.backgroundContext)
 
-        // check the relationship
-        NSLog("Relationship count: \(newDream.rules.count)")
-        for rule : AnyObject in newDream.rules {
-            let ruleItem = rule as Rule
-            NSLog("Check the relationship: \(ruleItem.name)")
-        }
-
         newDream.rules.removeObject(newRule1)
         newDream.rules.addObjectsFromArray([newRule1, newRule2])
         self.cdhelper.saveContext(self.cdhelper.backgroundContext)
@@ -345,6 +403,40 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             NSLog("Check the relationship: \(ruleItem.name)")
         }
 
+        // create another dream
+        var newDream2: Dream = NSEntityDescription.insertNewObjectForEntityForName("Dream", inManagedObjectContext: self.cdhelper.backgroundContext) as Dream
+        
+        newDream2.name = "another dream"
+        newDream2.credits = 30
+        newDream2.entityId = NSUUID.UUID().UUIDString
+        NSLog("Created Aother Dream for \(newDream2.name) + \(newDream2.credits) + \(newDream2.entityId) ")
+        self.cdhelper.saveContext(self.cdhelper.backgroundContext)
+        
+        // setup a relationship
+        newDream2.rules.removeAllObjects()
+        newDream2.rules.addObject(newRule2)
+        self.cdhelper.saveContext(self.cdhelper.backgroundContext)
+
+        // check the relationship
+        NSLog("Relationship count: \(newDream2.rules.count)")
+        for rule : AnyObject in newDream2.rules {
+            let ruleItem = rule as Rule
+            NSLog("Check the relationship: \(ruleItem.name)")
+        }
+
+        // create an actor
+        var newActor: Actor = NSEntityDescription.insertNewObjectForEntityForName("Actor", inManagedObjectContext: self.cdhelper.backgroundContext) as Actor
+        newActor.name = "anew Actor"
+        newActor.credits = 50
+        newActor.entityId = NSUUID.UUID().UUIDString
+        NSLog("Create anew Actor for \(newActor.name) + \(newActor.credits) + \(newActor.entityId)")
+        self.cdhelper.saveContext(self.cdhelper.backgroundContext)
+
+        // setup a relationship between actor and dreams
+        newActor.dreams.removeAllObjects()
+        newActor.dreams.addObject(newDream2)
+        self.cdhelper.saveContext(self.cdhelper.backgroundContext)
+        
         var fReq: NSFetchRequest = NSFetchRequest(entityName: "Rule")
         var error: NSError? = nil
         // set filter
@@ -386,6 +478,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             for rule : AnyObject in newItem.rules {
             let ruleItem = rule as Rule
             NSLog("Check the relationship: \(ruleItem.name) + \(ruleItem.credits) + \(ruleItem.entityId)")
+            }
+        }
+
+        fReq = NSFetchRequest(entityName: "Actor")
+        error = nil
+        // set filter
+        let stringActorNameBegin = "anew actor"
+        fReq.predicate = NSPredicate(format:"ANY name like[c] %@", stringActorNameBegin)
+        
+        // set result sorter
+        sorter = NSSortDescriptor(key: "name" , ascending: false)
+        fReq.sortDescriptors = [sorter]
+        
+        result = self.cdhelper.backgroundContext.executeFetchRequest(fReq, error:&error)
+        NSLog("fetched actor count: \(result.count)")
+        for resultItem : AnyObject in result {
+            var newItem = resultItem as Actor
+            NSLog("Fetched Actor for \(newItem.name) + \(newItem.credits) + \(newItem.entityId)")
+            NSLog("Relationship to dreams count: \(newItem.dreams.count)")
+            for rule : AnyObject in newItem.dreams {
+                let ruleItem = rule as Dream
+                NSLog("Check the relationship to dreams: \(ruleItem.name) + \(ruleItem.credits) + \(ruleItem.entityId)")
             }
         }
     }

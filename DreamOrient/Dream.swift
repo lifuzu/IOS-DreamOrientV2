@@ -2,7 +2,7 @@
 //  Dream.swift
 //  DreamOrient
 //
-//  Created by Richard Lee on 7/26/14.
+//  Created by Richard Lee on 7/28/14.
 //  Copyright (c) 2014 Weimed LLC (weimed.com). All rights reserved.
 //
 
@@ -16,5 +16,6 @@ class Dream: NSManagedObject {
     @NSManaged var credits: NSNumber
     @NSManaged var entityId: String
     @NSManaged var rules: NSMutableSet
+    @NSManaged var actor: Actor
 
 }
