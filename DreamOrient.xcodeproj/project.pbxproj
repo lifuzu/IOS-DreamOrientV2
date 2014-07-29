@@ -16,6 +16,7 @@
 		62D6587E1986E9A70002D4D3 /* Rule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D6587D1986E9A70002D4D3 /* Rule.swift */; };
 		62D658801986E9A70002D4D3 /* Actor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D6587F1986E9A70002D4D3 /* Actor.swift */; };
 		62D658821986E9A70002D4D3 /* Dream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D658811986E9A70002D4D3 /* Dream.swift */; };
+		62D6588519870F170002D4D3 /* DreamOrient.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62D6588419870F170002D4D3 /* DreamOrient.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +43,7 @@
 		62D6587D1986E9A70002D4D3 /* Rule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rule.swift; sourceTree = "<group>"; };
 		62D6587F1986E9A70002D4D3 /* Actor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Actor.swift; sourceTree = "<group>"; };
 		62D658811986E9A70002D4D3 /* Dream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dream.swift; sourceTree = "<group>"; };
+		62D6588419870F170002D4D3 /* DreamOrient.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = DreamOrient.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +91,7 @@
 				62D6586D19837F000002D4D3 /* CoreDataStore.swift */,
 				62C612DB1980D31E005200D4 /* Images.xcassets */,
 				62C612D81980D31E005200D4 /* DreamOrient.xcdatamodeld */,
+				62D6588419870F170002D4D3 /* DreamOrient.storyboard */,
 				62C612D41980D31E005200D4 /* Supporting Files */,
 			);
 			path = DreamOrient;
@@ -209,6 +212,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				62C612DC1980D31E005200D4 /* Images.xcassets in Resources */,
+				62D6588519870F170002D4D3 /* DreamOrient.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -294,6 +298,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -328,6 +333,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				METAL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -342,6 +348,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -354,6 +361,7 @@
 				INFOPLIST_FILE = DreamOrient/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
