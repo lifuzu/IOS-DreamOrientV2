@@ -99,10 +99,11 @@ class DreamListTableViewController: UITableViewController, NSFetchedResultsContr
         var dream = self.dataFRC!.objectAtIndexPath(indexPath) as Dream
 
         // Display text for the cell view
-        cell.textLabel.text = dream.name + " - \(dream.credits)"
+        cell.textLabel.text = dream.name
+        cell.detailTextLabel.text = "\(dream.credits)"
 
-        // Set the accessory view to be a clickable button
-        cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+        // Set the accessory view to be a clickable button - commented, since we can set it with IB
+        //cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
 
         return cell
     }
