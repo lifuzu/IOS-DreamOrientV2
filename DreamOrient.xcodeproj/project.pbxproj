@@ -18,6 +18,7 @@
 		62D658821986E9A70002D4D3 /* Dream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D658811986E9A70002D4D3 /* Dream.swift */; };
 		62D6588519870F170002D4D3 /* DreamOrient.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62D6588419870F170002D4D3 /* DreamOrient.storyboard */; };
 		62D65887198765C90002D4D3 /* DreamListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D65886198765C90002D4D3 /* DreamListTableViewController.swift */; };
+		62D6588919880C5A0002D4D3 /* DreamEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D6588819880C5A0002D4D3 /* DreamEditViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +47,7 @@
 		62D658811986E9A70002D4D3 /* Dream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dream.swift; sourceTree = "<group>"; };
 		62D6588419870F170002D4D3 /* DreamOrient.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = DreamOrient.storyboard; sourceTree = "<group>"; };
 		62D65886198765C90002D4D3 /* DreamListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DreamListTableViewController.swift; sourceTree = "<group>"; };
+		62D6588819880C5A0002D4D3 /* DreamEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DreamEditViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 				62D6588419870F170002D4D3 /* DreamOrient.storyboard */,
 				62C612D41980D31E005200D4 /* Supporting Files */,
 				62D65886198765C90002D4D3 /* DreamListTableViewController.swift */,
+				62D6588819880C5A0002D4D3 /* DreamEditViewController.swift */,
 			);
 			path = DreamOrient;
 			sourceTree = "<group>";
@@ -236,6 +239,7 @@
 				62D658821986E9A70002D4D3 /* Dream.swift in Sources */,
 				62D6586E19837F000002D4D3 /* CoreDataStore.swift in Sources */,
 				62D6587E1986E9A70002D4D3 /* Rule.swift in Sources */,
+				62D6588919880C5A0002D4D3 /* DreamEditViewController.swift in Sources */,
 				62D6586C19837EC80002D4D3 /* CoreDataHelper.swift in Sources */,
 				62D658801986E9A70002D4D3 /* Actor.swift in Sources */,
 				62D65887198765C90002D4D3 /* DreamListTableViewController.swift in Sources */,
@@ -349,6 +353,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = DreamOrient/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -363,6 +368,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = DreamOrient/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";

@@ -11,8 +11,10 @@ import CoreData
 
 class DreamListTableViewController: UITableViewController, NSFetchedResultsControllerDelegate {
 
+    // Properties
     var managedObjectContext: NSManagedObjectContext?
     var dataFRC: NSFetchedResultsController?
+    var dreamEditViewController: DreamEditViewController?
 
     init(coder aDecoder: NSCoder!) {
         super.init(coder: aDecoder)
@@ -53,9 +55,6 @@ class DreamListTableViewController: UITableViewController, NSFetchedResultsContr
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Set the title of the navigation view
-        //self.navigationItem.set
-
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -81,12 +80,14 @@ class DreamListTableViewController: UITableViewController, NSFetchedResultsContr
         return self.dataFRC!.sections.count
     }
 
+    // The number of rows in a given section of a table view
     override func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
         // Return the number of rows in the section.
         let sectionInfo = self.dataFRC!.sections[section] as NSFetchedResultsSectionInfo
         return sectionInfo.numberOfObjects
     }
 
+    // Insert in a particular location of the table view for a given section/row location
     override func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
         // Create a reusable table-view cell object located by its identifier
         var cell = tableView.dequeueReusableCellWithIdentifier("DreamCell", forIndexPath: indexPath) as UITableViewCell
@@ -98,9 +99,21 @@ class DreamListTableViewController: UITableViewController, NSFetchedResultsContr
         var dream = self.dataFRC!.objectAtIndexPath(indexPath) as Dream
 
         // Display text for the cell view
-        cell.textLabel.text = dream.name + "/\(dream.credits)"
+        cell.textLabel.text = dream.name + " - \(dream.credits)"
+
+        // Set the accessory view to be a clickable button
+        cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
 
         return cell
+    }
+
+    override func tableView(tableView: UITableView!, accessoryButtonTappedForRowWithIndexPath indexPath: NSIndexPath!) {
+        if (tableView.isEqual(self.tableView)) {
+            NSLog("Cell \(indexPath.row) accessory button in Section \(indexPath.section) is tapped")
+
+            // Let go ahead and allow list the rules of this dream
+            //self.listRules(indexPath)
+        }
     }
 
     /*
@@ -138,14 +151,22 @@ class DreamListTableViewController: UITableViewController, NSFetchedResultsContr
     }
     */
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
         // Get the new view controller using [segue destinationViewController].
         // Pass the selected object to the new view controller.
+        if (segue.identifier? == "dreamAdd") {
+            NSLog("Clicked 'Add' on the bar button")
+            let viewController = segue.destinationViewController as DreamEditViewController
+
+            // Set the dream id to ZERO when creating a new dream
+            viewController.dreamID = nil
+
+            // Pass the NSManagedObjectContext
+            viewController.managedObjectContext = self.managedObjectContext
+        }
     }
-    */
 
 }

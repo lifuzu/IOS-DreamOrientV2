@@ -38,7 +38,7 @@
             </objects>
             <point key="canvasLocation" x="1018" y="309"/>
         </scene>
-        <!--Dream List Table View Controller-->
+        <!--Dream List-->
         <scene sceneID="RNS-Xb-j8v">
             <objects>
                 <tableViewController id="95V-FG-BcC" customClass="DreamListTableViewController" customModule="DreamOrient" customModuleProvider="target" sceneMemberID="viewController">
@@ -59,10 +59,53 @@
                             <outlet property="delegate" destination="95V-FG-BcC" id="VOb-yj-awF"/>
                         </connections>
                     </tableView>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Dream List" id="fmt-Ss-cCD">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="TDi-Ac-UoB">
+                            <connections>
+                                <segue destination="1eF-K0-wpl" kind="show" identifier="dreamAdd" id="fns-Vf-Ety"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sbx-jx-jbd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1698" y="309"/>
+        </scene>
+        <!--Dream Edit View Controller-->
+        <scene sceneID="Ctc-Ks-CQx">
+            <objects>
+                <viewController id="1eF-K0-wpl" customClass="DreamEditViewController" customModule="DreamOrient" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="EvB-kN-H88"/>
+                        <viewControllerLayoutGuide type="bottom" id="rQk-qr-6XQ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ieb-bL-He8">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Dream Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7QB-o3-Ssq">
+                                <rect key="frame" x="20" y="74" width="295" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Credits" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qDB-f0-kdD">
+                                <rect key="frame" x="20" y="120" width="97" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="credits" destination="qDB-f0-kdD" id="GwA-G3-Ygj"/>
+                        <outlet property="name" destination="7QB-o3-Ssq" id="dDh-ir-hWf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Duc-Jf-u9U" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2385" y="309"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Vye-3Q-jv5">
