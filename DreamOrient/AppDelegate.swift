@@ -378,6 +378,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         NSLog("Created Another New Rule for \(newRule2.name) + \(newRule2.credits) + \(newRule2.entityId)")
         self.cdhelper.saveContext(self.cdhelper.managedObjectContext)
 
+        var newRule3: Rule = NSEntityDescription.insertNewObjectForEntityForName("Rule", inManagedObjectContext: self.cdhelper.managedObjectContext) as Rule
+        
+        newRule3.name = "another rule"
+        newRule3.credits = 4
+        newRule3.desc = newRule3.name + "\(newRule3.credits)"
+        newRule3.entityId = NSUUID.UUID().UUIDString
+        newRule3.createdAt = NSDate.date()
+        newRule3.modifiedAt = newRule3.createdAt
+        NSLog("Created Another New Rule for \(newRule3.name) + \(newRule3.credits) + \(newRule3.entityId)")
+        self.cdhelper.saveContext(self.cdhelper.managedObjectContext)
+
         // create a dream
         var newDream: Dream = NSEntityDescription.insertNewObjectForEntityForName("Dream", inManagedObjectContext: self.cdhelper.managedObjectContext) as Dream
 
@@ -388,13 +399,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.cdhelper.saveContext(self.cdhelper.managedObjectContext)
 
         // setup a relationship
-        newDream.rules.removeAllObjects()
-        newDream.rules.addObject(newRule1)
-        self.cdhelper.saveContext(self.cdhelper.managedObjectContext)
+        newDream.mutableSetValueForKey("rules").removeAllObjects()
+        //newDream.mutableSetValueForKey("rules").addObject(newRule1)
+        //self.cdhelper.saveContext(self.cdhelper.managedObjectContext)
 
-        newDream.rules.removeObject(newRule1)
+        //newDream.mutableSetValueForKey("rules").removeObject(newRule1)
         //newDream.rules.addObjectsFromArray([newRule1, newRule2])
-        newDream.mutableSetValueForKey("rules").addObject(newRule1)
+        newDream.mutableSetValueForKey("rules").addObjectsFromArray([newRule1, newRule3])
         self.cdhelper.saveContext(self.cdhelper.managedObjectContext)
 
         // check the relationship
@@ -414,7 +425,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.cdhelper.saveContext(self.cdhelper.managedObjectContext)
         
         // setup a relationship
-        newDream2.rules.removeAllObjects()
+        newDream2.mutableSetValueForKey("rules").removeAllObjects()
         //newDream2.rules.addObject(newRule2)
         newDream2.mutableSetValueForKey("rules").addObject(newRule2)
         self.cdhelper.saveContext(self.cdhelper.managedObjectContext)
@@ -436,7 +447,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         // setup a relationship between actor and dreams
         newActor.dreams.removeAllObjects()
-        newActor.dreams.addObject(newDream2)
+        //newActor.dreams.addObject(newDream2)
+        newActor.mutableSetValueForKey("dreams").addObject(newDream2)
         self.cdhelper.saveContext(self.cdhelper.managedObjectContext)
 
         var fReq: NSFetchRequest = NSFetchRequest(entityName: "Rule")
@@ -508,11 +520,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Fetch rules where dream is same one
         fReq = NSFetchRequest(entityName: "Rule")
         error = nil
-        // set filter
+        // Set filter
         NSLog("newDream.entityId = %@", newDream.entityId)
         fReq.predicate = NSPredicate(format:"ANY dream.entityId like %@", newDream.entityId)
 
-        // set result sorter
+        // Set result sorter
         sorter = NSSortDescriptor(key: "name" , ascending: false)
         fReq.sortDescriptors = [sorter]
 
