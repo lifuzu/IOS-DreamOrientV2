@@ -1,54 +1,28 @@
 //
-//  DreamListTableViewController.swift
+//  RuleListTableViewController.swift
 //  DreamOrient
 //
-//  Created by Richard Lee on 7/28/14.
+//  Created by Richard Lee on 7/30/14.
 //  Copyright (c) 2014 Weimed LLC (weimed.com). All rights reserved.
 //
 
 import UIKit
 import CoreData
 
-class DreamListTableViewController: UITableViewController, NSFetchedResultsControllerDelegate {
+class RuleListTableViewController: UITableViewController, NSFetchedResultsControllerDelegate {
 
     // Properties
     var managedObjectContext: NSManagedObjectContext?
     var dataFRC: NSFetchedResultsController?
-    var dreamEditViewController: DreamEditViewController?
+    var dream: Dream?
 
     init(coder aDecoder: NSCoder!) {
         super.init(coder: aDecoder)
-        NSLog("Initialize Dream List Table View Controller")
+        NSLog("Initialize Rule List Table View Controller")
 
         // Get the application delegate and its managed object context
         if (self.managedObjectContext == nil) {
             self.managedObjectContext = (UIApplication.sharedApplication().delegate as AppDelegate).cdhelper.managedObjectContext
-        }
-
-        // Create the fetch request
-        var fetchRequest = NSFetchRequest()
-
-        // Create reference to the Dream entity
-        fetchRequest.entity = NSEntityDescription.entityForName("Dream", inManagedObjectContext: self.managedObjectContext)
-
-        // In what order you want your data to be fetched
-        var sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
-        fetchRequest.sortDescriptors = [sortDescriptor]
-        fetchRequest.fetchBatchSize = 20
-
-        // Initialize a fetched results controller to efficiently manage the results
-        NSFetchedResultsController.deleteCacheWithName("allDreamsCache")
-        dataFRC = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.managedObjectContext, sectionNameKeyPath: nil, cacheName: "allDreamsCache")
-
-        // Notify the view controller when the fetched results change
-        self.dataFRC!.delegate = self
-
-        var fetchingError: NSError? = nil
-        // Perform the fetch request
-        if (self.dataFRC!.performFetch(&fetchingError)) {
-            NSLog("Successfully fetched data from Dream entity")
-        } else {
-            NSLog("Failed to fetch any data from the Dream entity")
         }
     }
 
@@ -61,6 +35,50 @@ class DreamListTableViewController: UITableViewController, NSFetchedResultsContr
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+
+        // If we got the dream then list the rules which related to the dream
+        if self.dream {
+            // Create the fetch request
+            var fetchRequest = NSFetchRequest()
+
+            // Create reference to the Rule entity
+            fetchRequest.entity = NSEntityDescription.entityForName("Rule", inManagedObjectContext: self.managedObjectContext)
+
+            // Set filter
+            fetchRequest.predicate = NSPredicate(format:"ANY dream.entityId like %@", self.dream!.entityId)
+
+            // In what order you want your data to be fetched
+            var sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
+            fetchRequest.sortDescriptors = [sortDescriptor]
+            fetchRequest.fetchBatchSize = 20
+
+            var error: NSError? = nil
+            NSLog("%d entities found.", self.managedObjectContext!.countForFetchRequest(fetchRequest, error: &error))
+
+            // Initialize a fetched results controller to efficiently manage the results
+            NSFetchedResultsController.deleteCacheWithName("allRulesCache")
+            dataFRC = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.managedObjectContext, sectionNameKeyPath: nil, cacheName: "allRulesCache")
+
+            // Notify the view controller when the fetched results change
+            self.dataFRC!.delegate = self
+
+            var fetchingError: NSError? = nil
+            // Perform the fetch request
+            if (self.dataFRC!.performFetch(&fetchingError)) {
+                let sectionInfo = self.dataFRC!.sections[self.dataFRC!.sections.count - 1] as NSFetchedResultsSectionInfo
+                NSLog("fetched rule count: \(sectionInfo.numberOfObjects)")
+                NSLog("Successfully fetched data from Rule entity")
+            } else {
+                NSLog("Failed to fetch any data from the Rule entity")
+            }
+        }
+
+    }
+
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+
+        NSLog("View will be appear")
     }
 
     // Notify the receiver that the fetched results controller has completed processing
@@ -81,41 +99,27 @@ class DreamListTableViewController: UITableViewController, NSFetchedResultsContr
         return self.dataFRC!.sections.count
     }
 
-    // The number of rows in a given section of a table view
     override func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
         // Return the number of rows in the section.
         let sectionInfo = self.dataFRC!.sections[section] as NSFetchedResultsSectionInfo
         return sectionInfo.numberOfObjects
     }
 
-    // Insert in a particular location of the table view for a given section/row location
     override func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
         // Create a reusable table-view cell object located by its identifier
-        var cell = tableView.dequeueReusableCellWithIdentifier("DreamCell", forIndexPath: indexPath) as UITableViewCell
+        var cell = tableView.dequeueReusableCellWithIdentifier("RuleCell", forIndexPath: indexPath) as UITableViewCell
         if (cell == nil) {
-            cell = UITableViewCell(style:.Default, reuseIdentifier: "DreamCell")
+            cell = UITableViewCell(style:.Default, reuseIdentifier: "RuleCell")
         }
 
-        // Get the dream object at the given index path in the fetch results
-        var dream = self.dataFRC!.objectAtIndexPath(indexPath) as Dream
+        // Get the rule object at the given index path in the fetch results
+        var rule = self.dataFRC!.objectAtIndexPath(indexPath) as Rule
 
         // Display text for the cell view
-        cell.textLabel.text = dream.name
-        cell.detailTextLabel.text = "\(dream.credits)"
-
-        // Set the accessory view to be a clickable button - commented, since we can set it with IB
-        //cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+        cell.textLabel.text = rule.name
+        //cell.detailTextLabel.text = "\(rule.credits)"
 
         return cell
-    }
-
-    override func tableView(tableView: UITableView!, accessoryButtonTappedForRowWithIndexPath indexPath: NSIndexPath!) {
-        if (tableView.isEqual(self.tableView)) {
-            NSLog("Cell \(indexPath.row) accessory button in Section \(indexPath.section) is tapped")
-
-            // Let go ahead and allow list the rules of this dream
-            //self.listRules(indexPath)
-        }
     }
 
     /*
@@ -153,32 +157,14 @@ class DreamListTableViewController: UITableViewController, NSFetchedResultsContr
     }
     */
 
+    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
         // Get the new view controller using [segue destinationViewController].
         // Pass the selected object to the new view controller.
-        if (segue.identifier? == "dreamAdd") {
-            NSLog("Clicked 'Add' on the bar button")
-            let viewController = segue.destinationViewController as DreamEditViewController
-
-            // Set the dream id to ZERO when creating a new dream
-            viewController.dreamID = nil
-
-            // Pass the NSManagedObjectContext
-            viewController.managedObjectContext = self.managedObjectContext
-        } else if (segue.identifier? == "ruleList") {
-            NSLog("Clicked 'Accessory' on the list")
-            let viewController = segue.destinationViewController as RuleListTableViewController
-
-            // Pass the dream to the rule list
-            var dream: Dream = self.dataFRC!.objectAtIndexPath(self.tableView.indexPathForCell(sender as UITableViewCell)) as Dream
-            viewController.dream = dream
-
-            // Pass the NSManagedObjectContext
-            viewController.managedObjectContext = self.managedObjectContext
-        }
     }
+    */
 
 }

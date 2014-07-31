@@ -41,10 +41,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-        //self.demoDream()
-        //self.demoRule()
-        //self.demoActor()
-        //self.demoRelationship()
+        self.demoDream()
+        self.demoRule()
+        self.demoActor()
+        self.demoRelationship()
     }
 
     func applicationWillTerminate(application: UIApplication) {
@@ -356,7 +356,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func demoRelationship() {
 
         // create two rules
-        var newRule1: Rule = NSEntityDescription.insertNewObjectForEntityForName("Rule", inManagedObjectContext: self.cdhelper.backgroundContext) as Rule
+        var newRule1: Rule = NSEntityDescription.insertNewObjectForEntityForName("Rule", inManagedObjectContext: self.cdhelper.managedObjectContext) as Rule
 
         newRule1.name = "one rule"
         newRule1.credits = 2
@@ -365,9 +365,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         newRule1.createdAt = NSDate.date()
         newRule1.modifiedAt = newRule1.createdAt
         NSLog("Created One New Rule for \(newRule1.name) + \(newRule1.credits) + \(newRule1.entityId)")
-        self.cdhelper.saveContext(self.cdhelper.backgroundContext)
+        self.cdhelper.saveContext(self.cdhelper.managedObjectContext)
 
-        var newRule2: Rule = NSEntityDescription.insertNewObjectForEntityForName("Rule", inManagedObjectContext: self.cdhelper.backgroundContext) as Rule
+        var newRule2: Rule = NSEntityDescription.insertNewObjectForEntityForName("Rule", inManagedObjectContext: self.cdhelper.managedObjectContext) as Rule
 
         newRule2.name = "another rule"
         newRule2.credits = 3
@@ -376,25 +376,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         newRule2.createdAt = NSDate.date()
         newRule2.modifiedAt = newRule2.createdAt
         NSLog("Created Another New Rule for \(newRule2.name) + \(newRule2.credits) + \(newRule2.entityId)")
-        self.cdhelper.saveContext(self.cdhelper.backgroundContext)
+        self.cdhelper.saveContext(self.cdhelper.managedObjectContext)
 
         // create a dream
-        var newDream: Dream = NSEntityDescription.insertNewObjectForEntityForName("Dream", inManagedObjectContext: self.cdhelper.backgroundContext) as Dream
+        var newDream: Dream = NSEntityDescription.insertNewObjectForEntityForName("Dream", inManagedObjectContext: self.cdhelper.managedObjectContext) as Dream
 
         newDream.name = "anew dream"
         newDream.credits = 20
         newDream.entityId = NSUUID.UUID().UUIDString
         NSLog("Created A New Dream for \(newDream.name) + \(newDream.credits) + \(newDream.entityId) ")
-        self.cdhelper.saveContext(self.cdhelper.backgroundContext)
+        self.cdhelper.saveContext(self.cdhelper.managedObjectContext)
 
         // setup a relationship
         newDream.rules.removeAllObjects()
         newDream.rules.addObject(newRule1)
-        self.cdhelper.saveContext(self.cdhelper.backgroundContext)
+        self.cdhelper.saveContext(self.cdhelper.managedObjectContext)
 
         newDream.rules.removeObject(newRule1)
-        newDream.rules.addObjectsFromArray([newRule1, newRule2])
-        self.cdhelper.saveContext(self.cdhelper.backgroundContext)
+        //newDream.rules.addObjectsFromArray([newRule1, newRule2])
+        newDream.mutableSetValueForKey("rules").addObject(newRule1)
+        self.cdhelper.saveContext(self.cdhelper.managedObjectContext)
 
         // check the relationship
         NSLog("Relationship count: \(newDream.rules.count)")
@@ -404,18 +405,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
 
         // create another dream
-        var newDream2: Dream = NSEntityDescription.insertNewObjectForEntityForName("Dream", inManagedObjectContext: self.cdhelper.backgroundContext) as Dream
+        var newDream2: Dream = NSEntityDescription.insertNewObjectForEntityForName("Dream", inManagedObjectContext: self.cdhelper.managedObjectContext) as Dream
         
         newDream2.name = "another dream"
         newDream2.credits = 30
         newDream2.entityId = NSUUID.UUID().UUIDString
         NSLog("Created Aother Dream for \(newDream2.name) + \(newDream2.credits) + \(newDream2.entityId) ")
-        self.cdhelper.saveContext(self.cdhelper.backgroundContext)
+        self.cdhelper.saveContext(self.cdhelper.managedObjectContext)
         
         // setup a relationship
         newDream2.rules.removeAllObjects()
-        newDream2.rules.addObject(newRule2)
-        self.cdhelper.saveContext(self.cdhelper.backgroundContext)
+        //newDream2.rules.addObject(newRule2)
+        newDream2.mutableSetValueForKey("rules").addObject(newRule2)
+        self.cdhelper.saveContext(self.cdhelper.managedObjectContext)
 
         // check the relationship
         NSLog("Relationship count: \(newDream2.rules.count)")
@@ -425,18 +427,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
 
         // create an actor
-        var newActor: Actor = NSEntityDescription.insertNewObjectForEntityForName("Actor", inManagedObjectContext: self.cdhelper.backgroundContext) as Actor
+        var newActor: Actor = NSEntityDescription.insertNewObjectForEntityForName("Actor", inManagedObjectContext: self.cdhelper.managedObjectContext) as Actor
         newActor.name = "anew Actor"
         newActor.credits = 50
         newActor.entityId = NSUUID.UUID().UUIDString
         NSLog("Create anew Actor for \(newActor.name) + \(newActor.credits) + \(newActor.entityId)")
-        self.cdhelper.saveContext(self.cdhelper.backgroundContext)
+        self.cdhelper.saveContext(self.cdhelper.managedObjectContext)
 
         // setup a relationship between actor and dreams
         newActor.dreams.removeAllObjects()
         newActor.dreams.addObject(newDream2)
-        self.cdhelper.saveContext(self.cdhelper.backgroundContext)
-        
+        self.cdhelper.saveContext(self.cdhelper.managedObjectContext)
+
         var fReq: NSFetchRequest = NSFetchRequest(entityName: "Rule")
         var error: NSError? = nil
         // set filter
@@ -470,11 +472,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         fReq.sortDescriptors = [sorter]
 
         result = self.cdhelper.backgroundContext.executeFetchRequest(fReq, error:&error)
-        NSLog("fetched count: \(result.count)")
+        NSLog("fetched dream count: \(result.count)")
         for resultItem : AnyObject in result {
             var newItem = resultItem as Dream
             NSLog("Fetched Rule for \(newItem.name) + \(newItem.credits) + \(newItem.entityId)")
-            NSLog("Relationship count: \(newItem.rules.count)")
+            NSLog("Relationship to rule count: \(newItem.rules.count)")
             for rule : AnyObject in newItem.rules {
             let ruleItem = rule as Rule
             NSLog("Check the relationship: \(ruleItem.name) + \(ruleItem.credits) + \(ruleItem.entityId)")
@@ -490,7 +492,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // set result sorter
         sorter = NSSortDescriptor(key: "name" , ascending: false)
         fReq.sortDescriptors = [sorter]
-        
+
         result = self.cdhelper.backgroundContext.executeFetchRequest(fReq, error:&error)
         NSLog("fetched actor count: \(result.count)")
         for resultItem : AnyObject in result {
@@ -501,6 +503,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 let ruleItem = rule as Dream
                 NSLog("Check the relationship to dreams: \(ruleItem.name) + \(ruleItem.credits) + \(ruleItem.entityId)")
             }
+        }
+
+        // Fetch rules where dream is same one
+        fReq = NSFetchRequest(entityName: "Rule")
+        error = nil
+        // set filter
+        NSLog("newDream.entityId = %@", newDream.entityId)
+        fReq.predicate = NSPredicate(format:"ANY dream.entityId like %@", newDream.entityId)
+
+        // set result sorter
+        sorter = NSSortDescriptor(key: "name" , ascending: false)
+        fReq.sortDescriptors = [sorter]
+
+        result = self.cdhelper.backgroundContext.executeFetchRequest(fReq, error:&error)
+        if error { NSLog("%@", error!) }
+        NSLog("fetched rule count: \(result.count)")
+        for resultItem : AnyObject in result {
+            var newItem = resultItem as Rule
+            NSLog("Fetched Rule for \(newItem.name) + \(newItem.credits) + \(newItem.entityId)")
+        }
+
+        var predicate = NSPredicate(format:"dream.entityId like %@", newDream.entityId)
+        var result2 = result.filter{ predicate.evaluateWithObject($0) }
+        NSLog("fetched rule count: \(result2.count)")
+        for resultItem : AnyObject in result2 {
+            var newItem = resultItem as Rule
+            NSLog("Fetched Rule for \(newItem.name) + \(newItem.credits) + \(newItem.entityId)")
         }
     }
 }

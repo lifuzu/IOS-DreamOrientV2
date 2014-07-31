@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		62B0BF9619896666002597E4 /* RuleListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B0BF9519896666002597E4 /* RuleListTableViewController.swift */; };
 		62C612D71980D31E005200D4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C612D61980D31E005200D4 /* AppDelegate.swift */; };
 		62C612DA1980D31E005200D4 /* DreamOrient.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 62C612D81980D31E005200D4 /* DreamOrient.xcdatamodeld */; };
 		62C612DC1980D31E005200D4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 62C612DB1980D31E005200D4 /* Images.xcassets */; };
@@ -32,6 +33,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		62B0BF9519896666002597E4 /* RuleListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RuleListTableViewController.swift; sourceTree = "<group>"; };
 		62C612D11980D31E005200D4 /* DreamOrient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DreamOrient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		62C612D51980D31E005200D4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		62C612D61980D31E005200D4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -99,6 +101,7 @@
 				62C612D41980D31E005200D4 /* Supporting Files */,
 				62D65886198765C90002D4D3 /* DreamListTableViewController.swift */,
 				62D6588819880C5A0002D4D3 /* DreamEditViewController.swift */,
+				62B0BF9519896666002597E4 /* RuleListTableViewController.swift */,
 			);
 			path = DreamOrient;
 			sourceTree = "<group>";
@@ -241,6 +244,7 @@
 				62D6587E1986E9A70002D4D3 /* Rule.swift in Sources */,
 				62D6588919880C5A0002D4D3 /* DreamEditViewController.swift in Sources */,
 				62D6586C19837EC80002D4D3 /* CoreDataHelper.swift in Sources */,
+				62B0BF9619896666002597E4 /* RuleListTableViewController.swift in Sources */,
 				62D658801986E9A70002D4D3 /* Actor.swift in Sources */,
 				62D65887198765C90002D4D3 /* DreamListTableViewController.swift in Sources */,
 				62C612DA1980D31E005200D4 /* DreamOrient.xcdatamodeld in Sources */,

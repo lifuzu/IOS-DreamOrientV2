@@ -23,8 +23,8 @@
         <relationship name="dream" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Dream" inverseName="rules" inverseEntity="Dream" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Rule" positionX="-63" positionY="-18" width="128" height="148"/>
-        <element name="Dream" positionX="-54" positionY="36" width="128" height="118"/>
         <element name="Actor" positionX="-45" positionY="63" width="128" height="103"/>
+        <element name="Dream" positionX="-54" positionY="36" width="128" height="118"/>
+        <element name="Rule" positionX="-63" positionY="-18" width="128" height="150"/>
     </elements>
 </model>
