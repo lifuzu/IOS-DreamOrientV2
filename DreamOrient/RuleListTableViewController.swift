@@ -99,25 +99,23 @@ class RuleListTableViewController: UITableViewController, NSFetchedResultsContro
         NSLog("View will be appear")
     }
 
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(true)
-        NSLog("View will be disappear")
+    override func willMoveToParentViewController(parent: UIViewController!) {
         NSLog("Summary of credits: \(self.creditsSum)")
 
-//        if self.actor {
-//            // Update the credit of actorr
-//            self.actor!.credits = self.creditsSum + self.actor!.credits.integerValue
-//
-//            if self.creditsSum != 0 {
-//                // Save the change
-//                var error: NSError? = nil
-//                if (self.managedObjectContext!.save(&error)) {
-//                    NSLog("Saved Actor for \(self.actor!.name) + \(self.actor!.credits) + \(self.actor!.entityId)")
-//                } else {
-//                    NSLog("Failed to save the Actor - %@", error!)
-//                }
-//            }
-//        }
+        if self.actor {
+            // Update the credit of actorr
+            self.actor!.credits = self.creditsSum + self.actor!.credits.integerValue
+
+            if self.creditsSum != 0 {
+                // Save the change
+                var error: NSError? = nil
+                if (self.managedObjectContext!.save(&error)) {
+                    NSLog("Saved Actor for \(self.actor!.name) + \(self.actor!.credits) + \(self.actor!.entityId)")
+                } else {
+                    NSLog("Failed to save the Actor - %@", error!)
+                }
+            }
+        }
     }
 
     // Notify the receiver that the fetched results controller has completed processing

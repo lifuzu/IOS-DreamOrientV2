@@ -34,6 +34,20 @@ class DreamEditViewController: UIViewController {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Save, target: self, action: "saveDream:")
     }
 
+    override func viewWillAppear(animated: Bool) {
+        // If we have the dream id then its in an edit mode, load the existing values
+        if (self.dreamID != nil) {
+            var error: NSError? = nil
+            var dream = self.managedObjectContext!.existingObjectWithID(self.dreamID, error: &error) as Dream
+            // Set the data from the dream object into the text view
+            name.text = dream.name
+            credits.text = dream.credits.stringValue
+        } else { // Add mode clean our text view fields
+            name.text = ""
+            credits.text = ""
+        }
+    }
+
     func saveDream(barButtonItem: UIBarButtonItem) {
         // Check which button it is, if you have more than one button on the screen
         // you must check before taking necessary action
@@ -43,23 +57,11 @@ class DreamEditViewController: UIViewController {
             if (self.dreamID == nil) {
                 self.createNewDreamWithName(name.text, paramCredits: credits.text.toInt())
             } else {
-                //self.updateDreamWithName()
+                self.updateDreamWithName(name.text, paramCredits: credits.text.toInt())
             }
 
             // Pop to the parent view
             self.navigationController.popViewControllerAnimated(true)
-        }
-    }
-
-    override func viewWillAppear(animated: Bool) {
-        // If we have the dream id then its in an edit mode, load the existing values
-        if (self.dreamID != nil) {
-            var error: NSError? = nil
-            // TODO
-            //
-        } else { // Add mode clean our text view fields
-            name.text = ""
-            credits.text = ""
         }
     }
 
@@ -71,20 +73,20 @@ class DreamEditViewController: UIViewController {
         }
 
         // Create a new dream which be allocated
-        var newDream = NSEntityDescription.insertNewObjectForEntityForName("Dream", inManagedObjectContext: self.managedObjectContext) as Dream
-        if (newDream == nil) {
-            NSLog("Failed to create the new dream")
+        var dream = NSEntityDescription.insertNewObjectForEntityForName("Dream", inManagedObjectContext: self.managedObjectContext) as Dream
+        if (dream == nil) {
+            NSLog("Failed to get the dream object")
             return success
         }
 
         // assign values
-        newDream.name = paramName
+        dream.name = paramName
         if paramCredits {
-            newDream.credits = paramCredits!
+            dream.credits = paramCredits!
         } else {
-            newDream.credits = 30
+            dream.credits = 30
         }
-        newDream.entityId = NSUUID.UUID().UUIDString
+        dream.entityId = NSUUID.UUID().UUIDString
 
         // Save the new dream
         var savingError: NSError? = nil
@@ -93,6 +95,42 @@ class DreamEditViewController: UIViewController {
             return success
         } else {
             NSLog("Failed to save the new dream, Error = %@", savingError!)
+        }
+
+        return success
+    }
+
+    func updateDreamWithName(paramName: String, paramCredits: Int?) -> Bool {
+        var success = false
+        if (paramName.isEmpty) {
+            NSLog("Name is mandatory.")
+            return success
+        }
+
+        // Get the existing dream
+        var error: NSError? = nil
+        var dream = self.managedObjectContext!.existingObjectWithID(self.dreamID, error: &error) as Dream
+        if (dream == nil) {
+            NSLog("Failed to create the new dream")
+            return success
+        }
+
+        // assign values
+        dream.name = paramName
+        if paramCredits {
+            dream.credits = paramCredits!
+        } else {
+            dream.credits = 30
+        }
+        dream.entityId = NSUUID.UUID().UUIDString
+
+        // Save the new dream
+        var savingError: NSError? = nil
+        if (self.managedObjectContext!.save(&savingError)) {
+            NSLog("The dream was updated!")
+            return success
+        } else {
+            NSLog("Failed to update the dream, Error = %@", savingError!)
         }
 
         return success

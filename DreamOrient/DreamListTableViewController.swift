@@ -112,31 +112,39 @@ class DreamListTableViewController: UITableViewController, NSFetchedResultsContr
     override func tableView(tableView: UITableView!, accessoryButtonTappedForRowWithIndexPath indexPath: NSIndexPath!) {
         if (tableView.isEqual(self.tableView)) {
             NSLog("Cell \(indexPath.row) accessory button in Section \(indexPath.section) is tapped")
-
-            // Let go ahead and allow list the rules of this dream
-            //self.listRules(indexPath)
         }
     }
 
-    /*
+    override func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
+        if (tableView.isEqual(self.tableView)) {
+            NSLog("Cell \(indexPath.row) in Section \(indexPath.section) is selected")
+        }
+    }
+
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView!, canEditRowAtIndexPath indexPath: NSIndexPath!) -> Bool {
         // Return NO if you do not want the specified item to be editable.
         return true
     }
-    */
 
-    /*
     // Override to support editing the table view.
     override func tableView(tableView: UITableView!, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath!) {
         if editingStyle == .Delete {
             // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            //tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            // Remove the data source from database
+            self.managedObjectContext!.deleteObject(self.dataFRC!.objectAtIndexPath(indexPath) as NSManagedObject)
+            // Save the change
+            var error: NSError? = nil
+            if (self.managedObjectContext!.save(&error)) {
+                NSLog("Successfully save the change.")
+            } else {
+                NSLog("Failed to save the change - %@", error!)
+            }
         } else if editingStyle == .Insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
     }
-    */
 
     /*
     // Override to support rearranging the table view.
@@ -165,6 +173,16 @@ class DreamListTableViewController: UITableViewController, NSFetchedResultsContr
 
             // Set the dream id to ZERO when creating a new dream
             viewController.dreamID = nil
+
+            // Pass the NSManagedObjectContext
+            viewController.managedObjectContext = self.managedObjectContext
+        } else if (segue.identifier? == "dreamEdit"){
+            NSLog("Edit Dream")
+            let viewController = segue.destinationViewController as DreamEditViewController
+
+            // Pass the dreamID when editing the dream
+            var dream = self.dataFRC!.objectAtIndexPath(self.tableView.indexPathForCell(sender as UITableViewCell)) as Dream
+            viewController.dreamID = dream.objectID
 
             // Pass the NSManagedObjectContext
             viewController.managedObjectContext = self.managedObjectContext

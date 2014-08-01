@@ -47,7 +47,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="detailDisclosureButton" indentationWidth="10" reuseIdentifier="DreamCell" textLabel="fAu-XP-jPP" detailTextLabel="vws-5e-FIv" style="IBUITableViewCellStyleValue1" id="nur-5a-nRK">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="DreamCell" textLabel="fAu-XP-jPP" detailTextLabel="vws-5e-FIv" style="IBUITableViewCellStyleValue1" id="nur-5a-nRK">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nur-5a-nRK" id="Ut3-Ed-bS3">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -67,7 +67,8 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="h1y-xl-VxG" kind="show" identifier="ruleList" trigger="accessoryAction" id="vF6-fl-eU8"/>
+                                    <segue destination="h1y-xl-VxG" kind="show" identifier="ruleList" id="5H4-jb-Ixn"/>
+                                    <segue destination="1eF-K0-wpl" kind="show" identifier="dreamEdit" trigger="accessoryAction" id="jR5-5c-s3m"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -99,7 +100,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="checkmark" indentationWidth="10" reuseIdentifier="RuleCell" editingAccessoryType="checkmark" textLabel="K7y-5r-OhD" detailTextLabel="Bf4-64-WmD" style="IBUITableViewCellStyleValue1" id="PyX-d2-3ka">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="checkmark" indentationWidth="10" reuseIdentifier="RuleCell" editingAccessoryType="detailButton" textLabel="K7y-5r-OhD" detailTextLabel="Bf4-64-WmD" style="IBUITableViewCellStyleValue1" id="PyX-d2-3ka">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PyX-d2-3ka" id="uSy-Tc-wFl">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -151,12 +152,12 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Rule Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FQG-uc-Hth">
-                                <rect key="frame" x="20" y="114" width="443" height="30"/>
+                                <rect key="frame" x="20" y="114" width="292" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Credits" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gy6-yR-Ea7">
-                                <rect key="frame" x="20" y="176" width="97" height="30"/>
+                                <rect key="frame" x="20" y="159" width="97" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -228,4 +229,7 @@
     <resources>
         <image name="SwimWays_Submorphers" width="500" height="375"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="jR5-5c-s3m"/>
+    </inferredMetricsTieBreakers>
 </document>
