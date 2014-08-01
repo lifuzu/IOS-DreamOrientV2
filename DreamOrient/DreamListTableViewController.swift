@@ -173,7 +173,7 @@ class DreamListTableViewController: UITableViewController, NSFetchedResultsContr
             let viewController = segue.destinationViewController as RuleListTableViewController
 
             // Pass the dream to the rule list
-            var dream: Dream = self.dataFRC!.objectAtIndexPath(self.tableView.indexPathForCell(sender as UITableViewCell)) as Dream
+            var dream = self.dataFRC!.objectAtIndexPath(self.tableView.indexPathForCell(sender as UITableViewCell)) as Dream
             viewController.dream = dream
 
             // Pass the NSManagedObjectContext

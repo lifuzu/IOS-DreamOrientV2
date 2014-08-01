@@ -76,23 +76,21 @@ class RuleListTableViewController: UITableViewController, NSFetchedResultsContro
 
             // Create reference to the Actor entity
             // Fetch actor who a dream is in his list
-            fetchRequest = NSFetchRequest(entityName: "Actor")
+            var fetchRequest2 = NSFetchRequest(entityName: "Actor")
             error = nil
             // Set filter
-            fetchRequest.predicate = NSPredicate(format:"dreams CONTAINS %@", self.dream!)
+            fetchRequest2.predicate = NSPredicate(format:"dreams CONTAINS %@", self.dream!)
 
             // Set result sorter
-            sortDescriptor = NSSortDescriptor(key: "name" , ascending: false)
-            fetchRequest.sortDescriptors = [sortDescriptor]
+            var sortDescriptor2 = NSSortDescriptor(key: "name" , ascending: false)
+            fetchRequest2.sortDescriptors = [sortDescriptor2]
 
             // Execute fetch request
-            var result = self.managedObjectContext!.executeFetchRequest(fetchRequest, error:&error)
+            var result = self.managedObjectContext!.executeFetchRequest(fetchRequest2, error:&error)
             if error { NSLog("%@", error!) }
             NSLog("fetched actor count: \(result.count)")
-            for resultItem : AnyObject? in result {
-                self.actor = resultItem as? Actor
-                NSLog("Fetched Actor for \(self.actor?.name) + \(self.actor?.credits) + \(self.actor?.entityId)")
-            }
+            self.actor = (result[result.count - 1] as Actor)
+            NSLog("Fetched Actor for \(self.actor?.name) + \(self.actor?.credits) + \(self.actor?.entityId)")
         }
     }
 
@@ -106,16 +104,20 @@ class RuleListTableViewController: UITableViewController, NSFetchedResultsContro
         NSLog("View will be disappear")
         NSLog("Summary of credits: \(self.creditsSum)")
 
-        if self.actor {
-            // Update the credit of actorr
-            self.actor!.credits = self.creditsSum + self.actor!.credits.integerValue
-
-            // Save the change
-            var error: NSError? = nil
-            self.managedObjectContext!.save(&error)
-            if error { NSLog("%@", error!) }
-            NSLog("Saved Actor for \(self.actor?.name) + \(self.actor?.credits) + \(self.actor?.entityId)")
-        }
+//        if self.actor {
+//            // Update the credit of actorr
+//            self.actor!.credits = self.creditsSum + self.actor!.credits.integerValue
+//
+//            if self.creditsSum != 0 {
+//                // Save the change
+//                var error: NSError? = nil
+//                if (self.managedObjectContext!.save(&error)) {
+//                    NSLog("Saved Actor for \(self.actor!.name) + \(self.actor!.credits) + \(self.actor!.entityId)")
+//                } else {
+//                    NSLog("Failed to save the Actor - %@", error!)
+//                }
+//            }
+//        }
     }
 
     // Notify the receiver that the fetched results controller has completed processing
@@ -185,25 +187,30 @@ class RuleListTableViewController: UITableViewController, NSFetchedResultsContro
 //        cell.accessoryType = UITableViewCellAccessoryType.None
 //    }
 
-    /*
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView!, canEditRowAtIndexPath indexPath: NSIndexPath!) -> Bool {
         // Return NO if you do not want the specified item to be editable.
         return true
     }
-    */
 
-    /*
     // Override to support editing the table view.
     override func tableView(tableView: UITableView!, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath!) {
         if editingStyle == .Delete {
             // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            //tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            // Remove the data source from database
+            self.managedObjectContext!.deleteObject(self.dataFRC!.objectAtIndexPath(indexPath) as NSManagedObject)
+            // Save the change
+            var error: NSError? = nil
+            if (self.managedObjectContext!.save(&error)) {
+                NSLog("Successfully save the change.")
+            } else {
+                NSLog("Failed to save the change - %@", error!)
+            }
         } else if editingStyle == .Insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
     }
-    */
 
     /*
     // Override to support rearranging the table view.
