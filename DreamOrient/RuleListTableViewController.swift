@@ -14,7 +14,9 @@ class RuleListTableViewController: UITableViewController, NSFetchedResultsContro
     // Properties
     var managedObjectContext: NSManagedObjectContext?
     var dataFRC: NSFetchedResultsController?
+    var actor: Actor?
     var dream: Dream?
+    var creditsSum: Int = 0
 
     init(coder aDecoder: NSCoder!) {
         super.init(coder: aDecoder)
@@ -71,14 +73,41 @@ class RuleListTableViewController: UITableViewController, NSFetchedResultsContro
             } else {
                 NSLog("Failed to fetch any data from the Rule entity")
             }
-        }
 
+            // Create reference to the Actor entity
+            // Fetch actor who a dream is in his list
+            fetchRequest = NSFetchRequest(entityName: "Actor")
+            error = nil
+            // Set filter
+            fetchRequest.predicate = NSPredicate(format:"dreams CONTAINS %@", self.dream!)
+
+            // Set result sorter
+            sortDescriptor = NSSortDescriptor(key: "name" , ascending: false)
+            fetchRequest.sortDescriptors = [sortDescriptor]
+
+            var result = self.managedObjectContext!.executeFetchRequest(fetchRequest, error:&error)
+            if error { NSLog("%@", error!) }
+            NSLog("fetched actor count: \(result.count)")
+            for resultItem : AnyObject? in result {
+                self.actor = resultItem as? Actor
+                NSLog("Fetched Actor for \(self.actor?.name) + \(self.actor?.credits) + \(self.actor?.entityId)")
+            }
+        }
     }
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-
         NSLog("View will be appear")
+    }
+
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(true)
+        NSLog("View will be disappear")
+        NSLog("Summary of credits: \(self.creditsSum)")
+
+        // Update the credit of actorr
+        self.actor!.credits = self.creditsSum + self.actor!.credits.integerValue
+        NSLog("Saved Actor for \(self.actor?.name) + \(self.actor?.credits) + \(self.actor?.entityId)")
     }
 
     // Notify the receiver that the fetched results controller has completed processing
@@ -115,12 +144,38 @@ class RuleListTableViewController: UITableViewController, NSFetchedResultsContro
         // Get the rule object at the given index path in the fetch results
         var rule = self.dataFRC!.objectAtIndexPath(indexPath) as Rule
 
-        // Display text for the cell view
+        // Display text for the cell view, and set cell unchecked
         cell.textLabel.text = rule.name
-        //cell.detailTextLabel.text = "\(rule.credits)"
+        cell.detailTextLabel.text = "\(rule.credits)"
+
+        // Initially set cell unselected and set the sum of credits is 0
+        cell.accessoryType = UITableViewCellAccessoryType.None
+        self.creditsSum = 0
 
         return cell
     }
+
+    override func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
+        // Get the cell selected
+        var cell = tableView.cellForRowAtIndexPath(indexPath) as UITableViewCell
+
+        // Get the rule object at the given index path in the fetch results
+        var rule = self.dataFRC!.objectAtIndexPath(indexPath) as Rule
+
+        if cell.accessoryType == UITableViewCellAccessoryType.Checkmark {
+            cell.accessoryType = UITableViewCellAccessoryType.None
+            self.creditsSum -= rule.credits.integerValue
+        } else {
+            cell.accessoryType = UITableViewCellAccessoryType.Checkmark
+            self.creditsSum += rule.credits.integerValue
+        }
+    }
+
+//    override func tableView(tableView: UITableView!, didDeselectRowAtIndexPath indexPath: NSIndexPath!) {
+//        // Get the cell deselected
+//        var cell = tableView.cellForRowAtIndexPath(indexPath) as UITableViewCell
+//        cell.accessoryType = UITableViewCellAccessoryType.None
+//    }
 
     /*
     // Override to support conditional editing of the table view.

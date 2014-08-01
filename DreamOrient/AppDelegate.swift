@@ -440,7 +440,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // create an actor
         var newActor: Actor = NSEntityDescription.insertNewObjectForEntityForName("Actor", inManagedObjectContext: self.cdhelper.managedObjectContext) as Actor
         newActor.name = "anew Actor"
-        newActor.credits = 50
+        newActor.credits = 10
         newActor.entityId = NSUUID.UUID().UUIDString
         NSLog("Create anew Actor for \(newActor.name) + \(newActor.credits) + \(newActor.entityId)")
         self.cdhelper.saveContext(self.cdhelper.managedObjectContext)
@@ -448,7 +448,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // setup a relationship between actor and dreams
         newActor.dreams.removeAllObjects()
         //newActor.dreams.addObject(newDream2)
+        newActor.credits = 15
         newActor.mutableSetValueForKey("dreams").addObject(newDream2)
+        newActor.mutableSetValueForKey("dreams").addObject(newDream)
         self.cdhelper.saveContext(self.cdhelper.managedObjectContext)
 
         var fReq: NSFetchRequest = NSFetchRequest(entityName: "Rule")
@@ -536,13 +538,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             NSLog("Fetched Rule for \(newItem.name) + \(newItem.credits) + \(newItem.entityId)")
         }
 
-        var predicate = NSPredicate(format:"dream.entityId like %@", newDream.entityId)
-        var result2 = result.filter{ predicate.evaluateWithObject($0) }
-        NSLog("fetched rule count: \(result2.count)")
-        for resultItem : AnyObject in result2 {
-            var newItem = resultItem as Rule
-            NSLog("Fetched Rule for \(newItem.name) + \(newItem.credits) + \(newItem.entityId)")
+        //var predicate = NSPredicate(format:"dream.entityId like %@", newDream.entityId)
+        //var result2 = result.filter{ predicate.evaluateWithObject($0) }
+        //NSLog("fetched rule count: \(result2.count)")
+        //for resultItem : AnyObject in result2 {
+        //    var newItem = resultItem as Rule
+        //    NSLog("Fetched Rule for \(newItem.name) + \(newItem.credits) + \(newItem.entityId)")
+        //}
+
+        //
+        // Fetch actor who a dream is in his list
+        fReq = NSFetchRequest(entityName: "Actor")
+        error = nil
+        // Set filter
+        NSLog("newDream.entityId = %@", newDream.entityId)
+        fReq.predicate = NSPredicate(format:"dreams CONTAINS %@", newDream)
+
+        // Set result sorter
+        sorter = NSSortDescriptor(key: "name" , ascending: false)
+        fReq.sortDescriptors = [sorter]
+
+        result = self.cdhelper.backgroundContext.executeFetchRequest(fReq, error:&error)
+        if error { NSLog("%@", error!) }
+        NSLog("fetched actor count: \(result.count)")
+        for resultItem : AnyObject in result {
+            var newItem = resultItem as Actor
+            NSLog("Fetched Actor for \(newItem.name) + \(newItem.credits) + \(newItem.entityId)")
         }
+
     }
 }
 
