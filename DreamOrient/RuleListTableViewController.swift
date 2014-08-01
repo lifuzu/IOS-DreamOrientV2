@@ -47,7 +47,7 @@ class RuleListTableViewController: UITableViewController, NSFetchedResultsContro
             fetchRequest.entity = NSEntityDescription.entityForName("Rule", inManagedObjectContext: self.managedObjectContext)
 
             // Set filter
-            fetchRequest.predicate = NSPredicate(format:"ANY dream.entityId like %@", self.dream!.entityId)
+            fetchRequest.predicate = NSPredicate(format:"dream.entityId == %@", self.dream!.entityId)
 
             // In what order you want your data to be fetched
             var sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
@@ -85,6 +85,7 @@ class RuleListTableViewController: UITableViewController, NSFetchedResultsContro
             sortDescriptor = NSSortDescriptor(key: "name" , ascending: false)
             fetchRequest.sortDescriptors = [sortDescriptor]
 
+            // Execute fetch request
             var result = self.managedObjectContext!.executeFetchRequest(fetchRequest, error:&error)
             if error { NSLog("%@", error!) }
             NSLog("fetched actor count: \(result.count)")
@@ -105,9 +106,16 @@ class RuleListTableViewController: UITableViewController, NSFetchedResultsContro
         NSLog("View will be disappear")
         NSLog("Summary of credits: \(self.creditsSum)")
 
-        // Update the credit of actorr
-        self.actor!.credits = self.creditsSum + self.actor!.credits.integerValue
-        NSLog("Saved Actor for \(self.actor?.name) + \(self.actor?.credits) + \(self.actor?.entityId)")
+        if self.actor {
+            // Update the credit of actorr
+            self.actor!.credits = self.creditsSum + self.actor!.credits.integerValue
+
+            // Save the change
+            var error: NSError? = nil
+            self.managedObjectContext!.save(&error)
+            if error { NSLog("%@", error!) }
+            NSLog("Saved Actor for \(self.actor?.name) + \(self.actor?.credits) + \(self.actor?.entityId)")
+        }
     }
 
     // Notify the receiver that the fetched results controller has completed processing
@@ -212,14 +220,25 @@ class RuleListTableViewController: UITableViewController, NSFetchedResultsContro
     }
     */
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
         // Get the new view controller using [segue destinationViewController].
         // Pass the selected object to the new view controller.
+        if (segue.identifier? == "ruleAdd") {
+            NSLog("Clicked 'Add' on the bar button")
+            let viewController = segue.destinationViewController as RuleEditViewController
+
+            // Set the rule id to ZERO when creating a new rule
+            viewController.ruleID = nil
+
+            // pass dream to edit controller, to setup the relationship
+            viewController.dream = self.dream
+
+            // Pass the NSManagedObjectContext
+            viewController.managedObjectContext = self.managedObjectContext
+        }
     }
-    */
 
 }

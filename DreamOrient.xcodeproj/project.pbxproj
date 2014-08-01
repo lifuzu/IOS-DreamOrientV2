@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		62ACF8B0198B567E00D08AF1 /* RuleEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62ACF8AF198B567E00D08AF1 /* RuleEditViewController.swift */; };
 		62B0BF9619896666002597E4 /* RuleListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B0BF9519896666002597E4 /* RuleListTableViewController.swift */; };
 		62C612D71980D31E005200D4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C612D61980D31E005200D4 /* AppDelegate.swift */; };
 		62C612DA1980D31E005200D4 /* DreamOrient.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 62C612D81980D31E005200D4 /* DreamOrient.xcdatamodeld */; };
@@ -33,6 +34,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		62ACF8AF198B567E00D08AF1 /* RuleEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RuleEditViewController.swift; sourceTree = "<group>"; };
 		62B0BF9519896666002597E4 /* RuleListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RuleListTableViewController.swift; sourceTree = "<group>"; };
 		62C612D11980D31E005200D4 /* DreamOrient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DreamOrient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		62C612D51980D31E005200D4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 				62D65886198765C90002D4D3 /* DreamListTableViewController.swift */,
 				62D6588819880C5A0002D4D3 /* DreamEditViewController.swift */,
 				62B0BF9519896666002597E4 /* RuleListTableViewController.swift */,
+				62ACF8AF198B567E00D08AF1 /* RuleEditViewController.swift */,
 			);
 			path = DreamOrient;
 			sourceTree = "<group>";
@@ -240,6 +243,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				62D658821986E9A70002D4D3 /* Dream.swift in Sources */,
+				62ACF8B0198B567E00D08AF1 /* RuleEditViewController.swift in Sources */,
 				62D6586E19837F000002D4D3 /* CoreDataStore.swift in Sources */,
 				62D6587E1986E9A70002D4D3 /* Rule.swift in Sources */,
 				62D6588919880C5A0002D4D3 /* DreamEditViewController.swift in Sources */,

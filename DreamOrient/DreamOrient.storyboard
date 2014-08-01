@@ -38,7 +38,7 @@
             </objects>
             <point key="canvasLocation" x="1018" y="309"/>
         </scene>
-        <!--Dream List-->
+        <!--Dreams-->
         <scene sceneID="RNS-Xb-j8v">
             <objects>
                 <tableViewController id="95V-FG-BcC" customClass="DreamListTableViewController" customModule="DreamOrient" customModuleProvider="target" sceneMemberID="viewController">
@@ -77,7 +77,7 @@
                         </connections>
                     </tableView>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Dream List" id="fmt-Ss-cCD">
+                    <navigationItem key="navigationItem" title="Dreams" id="fmt-Ss-cCD">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="TDi-Ac-UoB">
                             <connections>
                                 <segue destination="1eF-K0-wpl" kind="show" identifier="dreamAdd" id="fns-Vf-Ety"/>
@@ -90,7 +90,7 @@
             </objects>
             <point key="canvasLocation" x="1698" y="309"/>
         </scene>
-        <!--Rule List Table View Controller-->
+        <!--Rules-->
         <scene sceneID="HLD-ZY-ahF">
             <objects>
                 <tableViewController id="h1y-xl-VxG" customClass="RuleListTableViewController" customModule="DreamOrient" customModuleProvider="target" sceneMemberID="viewController">
@@ -125,10 +125,52 @@
                             <outlet property="delegate" destination="h1y-xl-VxG" id="SHa-uE-3k8"/>
                         </connections>
                     </tableView>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Rules" id="v7L-er-tTP">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="FlH-hQ-iOJ">
+                            <connections>
+                                <segue destination="xgG-Zy-cQ1" kind="show" identifier="ruleAdd" id="fZw-oF-qUE"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aDd-Id-gRl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2414" y="41"/>
+        </scene>
+        <!--Rule Edit View Controller-->
+        <scene sceneID="T8r-kP-6ih">
+            <objects>
+                <viewController id="xgG-Zy-cQ1" customClass="RuleEditViewController" customModule="DreamOrient" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="UeC-BQ-0VU"/>
+                        <viewControllerLayoutGuide type="bottom" id="XoW-FG-92a"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Xxd-BY-jyP">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Rule Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FQG-uc-Hth">
+                                <rect key="frame" x="20" y="114" width="443" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Credits" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gy6-yR-Ea7">
+                                <rect key="frame" x="20" y="176" width="97" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="credits" destination="gy6-yR-Ea7" id="xue-lv-eoQ"/>
+                        <outlet property="name" destination="FQG-uc-Hth" id="J94-NF-Uf7"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hBW-bq-tSi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3091" y="41"/>
         </scene>
         <!--Dream Edit View Controller-->
         <scene sceneID="Ctc-Ks-CQx">
