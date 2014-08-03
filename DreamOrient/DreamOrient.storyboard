@@ -27,7 +27,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="pAO-6O-Lpi">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="2k0-O0-DBx">
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="2k0-O0-DBx">
                             <connections>
                                 <segue destination="95V-FG-BcC" kind="show" id="Sbb-hc-7nV"/>
                             </connections>

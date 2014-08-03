@@ -15,6 +15,7 @@ class DreamListTableViewController: UITableViewController, NSFetchedResultsContr
     var managedObjectContext: NSManagedObjectContext?
     var dataFRC: NSFetchedResultsController?
     var dreamEditViewController: DreamEditViewController?
+    var actorFRC: NSFetchedResultsController?
 
     init(coder aDecoder: NSCoder!) {
         super.init(coder: aDecoder)
@@ -49,6 +50,30 @@ class DreamListTableViewController: UITableViewController, NSFetchedResultsContr
             NSLog("Successfully fetched data from Dream entity")
         } else {
             NSLog("Failed to fetch any data from the Dream entity")
+        }
+
+        // Create reference to the Actor entity
+        var fetchRequest2 = NSFetchRequest()
+
+        // Create reference to the Dream entity
+        fetchRequest2.entity = NSEntityDescription.entityForName("Actor", inManagedObjectContext: self.managedObjectContext)
+
+        // In what order you want your data to be fetched
+        var sortDescriptor2 = NSSortDescriptor(key: "name", ascending: true)
+        fetchRequest2.sortDescriptors = [sortDescriptor2]
+
+        // Initialize a fetched results controller to efficiently manage the results
+        NSFetchedResultsController.deleteCacheWithName("allActorsCache")
+        actorFRC = NSFetchedResultsController(fetchRequest: fetchRequest2, managedObjectContext: self.managedObjectContext, sectionNameKeyPath: nil, cacheName: "allActorsCache")
+
+        // Notify the view controller when the fetched results change
+        self.actorFRC!.delegate = self
+
+        // Perform the fetch request
+        if (self.actorFRC!.performFetch(&fetchingError)) {
+            NSLog("Successfully fetched data from Actor entity")
+        } else {
+            NSLog("Failed to fetch any data from the Actor entity")
         }
     }
 
@@ -101,7 +126,7 @@ class DreamListTableViewController: UITableViewController, NSFetchedResultsContr
 
         // Display text for the cell view
         cell.textLabel.text = dream.name
-        cell.detailTextLabel.text = "\(dream.credits)"
+        cell.detailTextLabel.text = "\(dream.actor.credits)/\(dream.credits)"
 
         // Set the accessory view to be a clickable button - commented, since we can set it with IB
         //cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
