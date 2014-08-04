@@ -13,7 +13,7 @@ class RuleListTableViewController: UITableViewController, NSFetchedResultsContro
 
     // Properties
     var managedObjectContext: NSManagedObjectContext?
-    var dataFRC: NSFetchedResultsController?
+    var ruleFRC: NSFetchedResultsController?
     var actor: Actor?
     var dreamID: NSManagedObjectID?
     var creditsSum: Int = 0
@@ -49,34 +49,14 @@ class RuleListTableViewController: UITableViewController, NSFetchedResultsContro
                 abort()
             }
 
-            // Create the fetch request
-            var fetchRequest = NSFetchRequest()
-
-            // Create reference to the Rule entity
-            fetchRequest.entity = NSEntityDescription.entityForName("Rule", inManagedObjectContext: self.managedObjectContext)
-
-            // Set filter
-            fetchRequest.predicate = NSPredicate(format:"dream.entityId == %@", dream.entityId)
-
-            // In what order you want your data to be fetched
-            var sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
-            fetchRequest.sortDescriptors = [sortDescriptor]
-            fetchRequest.fetchBatchSize = 20
-
-            NSLog("%d entities found.", self.managedObjectContext!.countForFetchRequest(fetchRequest, error: &error))
-
-            // Initialize a fetched results controller to efficiently manage the results
-            NSFetchedResultsController.deleteCacheWithName("allRulesCache")
-            dataFRC = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.managedObjectContext, sectionNameKeyPath: nil, cacheName: "allRulesCache")
-
+            // Get the fetch result controller with predicate
+            ruleFRC = CoreDataUtils.getFetchedResultControllerWithPredicate(managedObjectContext: self.managedObjectContext!, entityName: "Rule", sortKey: "name", predicateKey: "dream.entityId == %@", predicateValue: dream.entityId)
             // Notify the view controller when the fetched results change
-            self.dataFRC!.delegate = self
+            ruleFRC!.delegate = self
 
             var fetchingError: NSError? = nil
             // Perform the fetch request
-            if (self.dataFRC!.performFetch(&fetchingError)) {
-                let sectionInfo = self.dataFRC!.sections[self.dataFRC!.sections.count - 1] as NSFetchedResultsSectionInfo
-                NSLog("fetched rule count: \(sectionInfo.numberOfObjects)")
+            if (ruleFRC!.performFetch(&fetchingError)) {
                 NSLog("Successfully fetched data from Rule entity")
             } else {
                 NSLog("Failed to fetch any data from the Rule entity")
@@ -141,12 +121,12 @@ class RuleListTableViewController: UITableViewController, NSFetchedResultsContro
 
     override func numberOfSectionsInTableView(tableView: UITableView!) -> Int {
         // Return the number of sections.
-        return self.dataFRC!.sections.count
+        return self.ruleFRC!.sections.count
     }
 
     override func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
         // Return the number of rows in the section.
-        let sectionInfo = self.dataFRC!.sections[section] as NSFetchedResultsSectionInfo
+        let sectionInfo = self.ruleFRC!.sections[section] as NSFetchedResultsSectionInfo
         return sectionInfo.numberOfObjects
     }
 
@@ -158,7 +138,7 @@ class RuleListTableViewController: UITableViewController, NSFetchedResultsContro
         }
 
         // Get the rule object at the given index path in the fetch results
-        var rule = self.dataFRC!.objectAtIndexPath(indexPath) as Rule
+        var rule = self.ruleFRC!.objectAtIndexPath(indexPath) as Rule
 
         // Display text for the cell view, and set cell unchecked
         cell.textLabel.text = rule.name
@@ -176,7 +156,7 @@ class RuleListTableViewController: UITableViewController, NSFetchedResultsContro
         var cell = tableView.cellForRowAtIndexPath(indexPath) as UITableViewCell
 
         // Get the rule object at the given index path in the fetch results
-        var rule = self.dataFRC!.objectAtIndexPath(indexPath) as Rule
+        var rule = self.ruleFRC!.objectAtIndexPath(indexPath) as Rule
 
         if cell.accessoryType == UITableViewCellAccessoryType.Checkmark {
             cell.accessoryType = UITableViewCellAccessoryType.None
@@ -205,7 +185,7 @@ class RuleListTableViewController: UITableViewController, NSFetchedResultsContro
             // Delete the row from the data source
             //tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
             // Remove the data source from database
-            self.managedObjectContext!.deleteObject(self.dataFRC!.objectAtIndexPath(indexPath) as NSManagedObject)
+            self.managedObjectContext!.deleteObject(self.ruleFRC!.objectAtIndexPath(indexPath) as NSManagedObject)
             // Save the change
             var error: NSError? = nil
             if (self.managedObjectContext!.save(&error)) {
