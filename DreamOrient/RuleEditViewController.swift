@@ -14,6 +14,7 @@ class RuleEditViewController: UIViewController {
     // Properties
     var managedObjectContext: NSManagedObjectContext?
     var dream: Dream?
+    var dreamID: NSManagedObjectID?
     var ruleID: NSManagedObjectID?
 
     @IBOutlet var name: UITextField!
@@ -89,8 +90,16 @@ class RuleEditViewController: UIViewController {
         newItem.entityId = NSUUID.UUID().UUIDString
         newItem.createdAt = NSDate.date()
         newItem.modifiedAt = newItem.createdAt
+
+        // Get the existing object according to the ID
+        var error: NSError? = nil
+        var dream = self.managedObjectContext!.existingObjectWithID(self.dreamID, error: &error) as Dream
+        if (dream == nil) {
+            NSLog("Failed to get the existing dream according to the dreamID")
+            abort()
+        }
         // setup relationship with dream
-        newItem.dream = self.dream!
+        newItem.dream = dream
 
         // Save the new rule
         var savingError: NSError? = nil

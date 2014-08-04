@@ -192,9 +192,9 @@ class DreamListTableViewController: UITableViewController, NSFetchedResultsContr
             NSLog("Clicked 'Accessory' on the list")
             let viewController = segue.destinationViewController as RuleListTableViewController
 
-            // Pass the dream to the rule list
+            // Pass the dreamID to the rule list
             var dream = dreamFRC!.objectAtIndexPath(self.tableView.indexPathForCell(sender as UITableViewCell)) as Dream
-            viewController.dream = dream
+            viewController.dreamID = dream.objectID
 
             // Pass the NSManagedObjectContext
             viewController.managedObjectContext = self.managedObjectContext

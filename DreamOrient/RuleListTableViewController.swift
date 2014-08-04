@@ -15,7 +15,7 @@ class RuleListTableViewController: UITableViewController, NSFetchedResultsContro
     var managedObjectContext: NSManagedObjectContext?
     var dataFRC: NSFetchedResultsController?
     var actor: Actor?
-    var dream: Dream?
+    var dreamID: NSManagedObjectID?
     var creditsSum: Int = 0
 
     init(coder aDecoder: NSCoder!) {
@@ -39,7 +39,16 @@ class RuleListTableViewController: UITableViewController, NSFetchedResultsContro
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
 
         // If we got the dream then list the rules which related to the dream
-        if self.dream {
+        if self.dreamID {
+            var error: NSError? = nil
+
+            // Get the existing object according to the ID
+            var dream = self.managedObjectContext!.existingObjectWithID(self.dreamID, error: &error) as Dream
+            if (dream == nil) {
+                NSLog("Failed to get the existing dream according to the dreamID")
+                abort()
+            }
+
             // Create the fetch request
             var fetchRequest = NSFetchRequest()
 
@@ -47,14 +56,13 @@ class RuleListTableViewController: UITableViewController, NSFetchedResultsContro
             fetchRequest.entity = NSEntityDescription.entityForName("Rule", inManagedObjectContext: self.managedObjectContext)
 
             // Set filter
-            fetchRequest.predicate = NSPredicate(format:"dream.entityId == %@", self.dream!.entityId)
+            fetchRequest.predicate = NSPredicate(format:"dream.entityId == %@", dream.entityId)
 
             // In what order you want your data to be fetched
             var sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
             fetchRequest.sortDescriptors = [sortDescriptor]
             fetchRequest.fetchBatchSize = 20
 
-            var error: NSError? = nil
             NSLog("%d entities found.", self.managedObjectContext!.countForFetchRequest(fetchRequest, error: &error))
 
             // Initialize a fetched results controller to efficiently manage the results
@@ -79,7 +87,7 @@ class RuleListTableViewController: UITableViewController, NSFetchedResultsContro
             var fetchRequest2 = NSFetchRequest(entityName: "Actor")
             error = nil
             // Set filter
-            fetchRequest2.predicate = NSPredicate(format:"dreams CONTAINS %@", self.dream!)
+            fetchRequest2.predicate = NSPredicate(format:"dreams CONTAINS %@", dream)
 
             // Set result sorter
             var sortDescriptor2 = NSSortDescriptor(key: "name" , ascending: false)
@@ -239,7 +247,7 @@ class RuleListTableViewController: UITableViewController, NSFetchedResultsContro
             viewController.ruleID = nil
 
             // pass dream to edit controller, to setup the relationship
-            viewController.dream = self.dream
+            viewController.dreamID = self.dreamID
 
             // Pass the NSManagedObjectContext
             viewController.managedObjectContext = self.managedObjectContext
