@@ -13,8 +13,9 @@ class DreamListTableViewController: UITableViewController, NSFetchedResultsContr
 
     // Properties
     var managedObjectContext: NSManagedObjectContext?
-    var dataFRC: NSFetchedResultsController?
     var dreamEditViewController: DreamEditViewController?
+    var dreamFRC: NSFetchedResultsController?
+    // Define actorFRC only for update actor credits automatically
     var actorFRC: NSFetchedResultsController?
 
     init(coder aDecoder: NSCoder!) {
@@ -26,51 +27,27 @@ class DreamListTableViewController: UITableViewController, NSFetchedResultsContr
             self.managedObjectContext = (UIApplication.sharedApplication().delegate as AppDelegate).cdhelper.managedObjectContext
         }
 
-        // Create the fetch request
-        var fetchRequest = NSFetchRequest()
-
-        // Create reference to the Dream entity
-        fetchRequest.entity = NSEntityDescription.entityForName("Dream", inManagedObjectContext: self.managedObjectContext)
-
-        // In what order you want your data to be fetched
-        var sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
-        fetchRequest.sortDescriptors = [sortDescriptor]
-        fetchRequest.fetchBatchSize = 20
-
-        // Initialize a fetched results controller to efficiently manage the results
-        NSFetchedResultsController.deleteCacheWithName("allDreamsCache")
-        dataFRC = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.managedObjectContext, sectionNameKeyPath: nil, cacheName: "allDreamsCache")
-
+        // Get the fetch result controller
+        dreamFRC = CoreDataUtils.getFetchedResultController(managedObjectContext: self.managedObjectContext!, entityName: "Dream", sortKey: "name")
         // Notify the view controller when the fetched results change
-        self.dataFRC!.delegate = self
+        dreamFRC!.delegate = self
 
         var fetchingError: NSError? = nil
         // Perform the fetch request
-        if (self.dataFRC!.performFetch(&fetchingError)) {
+        if (dreamFRC!.performFetch(&fetchingError)) {
             NSLog("Successfully fetched data from Dream entity")
         } else {
             NSLog("Failed to fetch any data from the Dream entity")
         }
 
-        // Create reference to the Actor entity
-        var fetchRequest2 = NSFetchRequest()
-
-        // Create reference to the Dream entity
-        fetchRequest2.entity = NSEntityDescription.entityForName("Actor", inManagedObjectContext: self.managedObjectContext)
-
-        // In what order you want your data to be fetched
-        var sortDescriptor2 = NSSortDescriptor(key: "name", ascending: true)
-        fetchRequest2.sortDescriptors = [sortDescriptor2]
-
-        // Initialize a fetched results controller to efficiently manage the results
-        NSFetchedResultsController.deleteCacheWithName("allActorsCache")
-        actorFRC = NSFetchedResultsController(fetchRequest: fetchRequest2, managedObjectContext: self.managedObjectContext, sectionNameKeyPath: nil, cacheName: "allActorsCache")
-
+        // Get the fetch result controller
+        actorFRC = CoreDataUtils.getFetchedResultController(managedObjectContext: self.managedObjectContext!, entityName: "Actor", sortKey: "name")
         // Notify the view controller when the fetched results change
-        self.actorFRC!.delegate = self
+        actorFRC!.delegate = self
 
+        fetchingError = nil
         // Perform the fetch request
-        if (self.actorFRC!.performFetch(&fetchingError)) {
+        if (actorFRC!.performFetch(&fetchingError)) {
             NSLog("Successfully fetched data from Actor entity")
         } else {
             NSLog("Failed to fetch any data from the Actor entity")
@@ -103,13 +80,13 @@ class DreamListTableViewController: UITableViewController, NSFetchedResultsContr
 
     override func numberOfSectionsInTableView(tableView: UITableView!) -> Int {
         // Return the number of sections.
-        return self.dataFRC!.sections.count
+        return dreamFRC!.sections.count
     }
 
     // The number of rows in a given section of a table view
     override func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
         // Return the number of rows in the section.
-        let sectionInfo = self.dataFRC!.sections[section] as NSFetchedResultsSectionInfo
+        let sectionInfo = dreamFRC!.sections[section] as NSFetchedResultsSectionInfo
         return sectionInfo.numberOfObjects
     }
 
@@ -122,7 +99,7 @@ class DreamListTableViewController: UITableViewController, NSFetchedResultsContr
         }
 
         // Get the dream object at the given index path in the fetch results
-        var dream = self.dataFRC!.objectAtIndexPath(indexPath) as Dream
+        var dream = dreamFRC!.objectAtIndexPath(indexPath) as Dream
 
         // Display text for the cell view
         cell.textLabel.text = dream.name
@@ -158,7 +135,7 @@ class DreamListTableViewController: UITableViewController, NSFetchedResultsContr
             // Delete the row from the data source
             //tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
             // Remove the data source from database
-            self.managedObjectContext!.deleteObject(self.dataFRC!.objectAtIndexPath(indexPath) as NSManagedObject)
+            self.managedObjectContext!.deleteObject(dreamFRC!.objectAtIndexPath(indexPath) as NSManagedObject)
             // Save the change
             var error: NSError? = nil
             if (self.managedObjectContext!.save(&error)) {
@@ -206,7 +183,7 @@ class DreamListTableViewController: UITableViewController, NSFetchedResultsContr
             let viewController = segue.destinationViewController as DreamEditViewController
 
             // Pass the dreamID when editing the dream
-            var dream = self.dataFRC!.objectAtIndexPath(self.tableView.indexPathForCell(sender as UITableViewCell)) as Dream
+            var dream = dreamFRC!.objectAtIndexPath(self.tableView.indexPathForCell(sender as UITableViewCell)) as Dream
             viewController.dreamID = dream.objectID
 
             // Pass the NSManagedObjectContext
@@ -216,7 +193,7 @@ class DreamListTableViewController: UITableViewController, NSFetchedResultsContr
             let viewController = segue.destinationViewController as RuleListTableViewController
 
             // Pass the dream to the rule list
-            var dream = self.dataFRC!.objectAtIndexPath(self.tableView.indexPathForCell(sender as UITableViewCell)) as Dream
+            var dream = dreamFRC!.objectAtIndexPath(self.tableView.indexPathForCell(sender as UITableViewCell)) as Dream
             viewController.dream = dream
 
             // Pass the NSManagedObjectContext
