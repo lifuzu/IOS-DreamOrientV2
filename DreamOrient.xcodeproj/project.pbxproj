@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		629ACACC198F00DB00363D3B /* CoreDataUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629ACACB198F00DB00363D3B /* CoreDataUtils.swift */; };
+		629ACACE198FF17400363D3B /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629ACACD198FF17400363D3B /* HomeViewController.swift */; };
+		629ACB0B1990074400363D3B /* PageContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629ACB0A1990074400363D3B /* PageContentViewController.swift */; };
+		629ACB0D1990141000363D3B /* page1.png in Resources */ = {isa = PBXBuildFile; fileRef = 629ACB0C1990141000363D3B /* page1.png */; };
+		629ACB0F1990141800363D3B /* page2.png in Resources */ = {isa = PBXBuildFile; fileRef = 629ACB0E1990141800363D3B /* page2.png */; };
+		629ACB111990141E00363D3B /* page3.png in Resources */ = {isa = PBXBuildFile; fileRef = 629ACB101990141E00363D3B /* page3.png */; };
+		629ACB131990142400363D3B /* page4.png in Resources */ = {isa = PBXBuildFile; fileRef = 629ACB121990142400363D3B /* page4.png */; };
 		62ACF8B0198B567E00D08AF1 /* RuleEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62ACF8AF198B567E00D08AF1 /* RuleEditViewController.swift */; };
 		62B0BF9619896666002597E4 /* RuleListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B0BF9519896666002597E4 /* RuleListTableViewController.swift */; };
 		62C612D71980D31E005200D4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C612D61980D31E005200D4 /* AppDelegate.swift */; };
@@ -36,6 +42,12 @@
 
 /* Begin PBXFileReference section */
 		629ACACB198F00DB00363D3B /* CoreDataUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataUtils.swift; sourceTree = "<group>"; };
+		629ACACD198FF17400363D3B /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		629ACB0A1990074400363D3B /* PageContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageContentViewController.swift; sourceTree = "<group>"; };
+		629ACB0C1990141000363D3B /* page1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = page1.png; sourceTree = "<group>"; };
+		629ACB0E1990141800363D3B /* page2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = page2.png; sourceTree = "<group>"; };
+		629ACB101990141E00363D3B /* page3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = page3.png; sourceTree = "<group>"; };
+		629ACB121990142400363D3B /* page4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = page4.png; sourceTree = "<group>"; };
 		62ACF8AF198B567E00D08AF1 /* RuleEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RuleEditViewController.swift; sourceTree = "<group>"; };
 		62B0BF9519896666002597E4 /* RuleListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RuleListTableViewController.swift; sourceTree = "<group>"; };
 		62C612D11980D31E005200D4 /* DreamOrient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DreamOrient.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -74,6 +86,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		629ACB14199014B600363D3B /* assets */ = {
+			isa = PBXGroup;
+			children = (
+				629ACB121990142400363D3B /* page4.png */,
+				629ACB101990141E00363D3B /* page3.png */,
+				629ACB0E1990141800363D3B /* page2.png */,
+				629ACB0C1990141000363D3B /* page1.png */,
+			);
+			name = assets;
+			sourceTree = "<group>";
+		};
 		62C612C81980D31E005200D4 = {
 			isa = PBXGroup;
 			children = (
@@ -95,19 +118,22 @@
 		62C612D31980D31E005200D4 /* DreamOrient */ = {
 			isa = PBXGroup;
 			children = (
+				629ACB14199014B600363D3B /* assets */,
 				62D6586619837E240002D4D3 /* models */,
+				62C612DB1980D31E005200D4 /* Images.xcassets */,
+				62C612D81980D31E005200D4 /* DreamOrient.xcdatamodeld */,
+				62D6588419870F170002D4D3 /* DreamOrient.storyboard */,
 				62C612D61980D31E005200D4 /* AppDelegate.swift */,
 				629ACACB198F00DB00363D3B /* CoreDataUtils.swift */,
 				62D6586B19837EC80002D4D3 /* CoreDataHelper.swift */,
 				62D6586D19837F000002D4D3 /* CoreDataStore.swift */,
-				62C612DB1980D31E005200D4 /* Images.xcassets */,
-				62C612D81980D31E005200D4 /* DreamOrient.xcdatamodeld */,
-				62D6588419870F170002D4D3 /* DreamOrient.storyboard */,
-				62C612D41980D31E005200D4 /* Supporting Files */,
+				629ACACD198FF17400363D3B /* HomeViewController.swift */,
+				629ACB0A1990074400363D3B /* PageContentViewController.swift */,
 				62D65886198765C90002D4D3 /* DreamListTableViewController.swift */,
 				62D6588819880C5A0002D4D3 /* DreamEditViewController.swift */,
 				62B0BF9519896666002597E4 /* RuleListTableViewController.swift */,
 				62ACF8AF198B567E00D08AF1 /* RuleEditViewController.swift */,
+				62C612D41980D31E005200D4 /* Supporting Files */,
 			);
 			path = DreamOrient;
 			sourceTree = "<group>";
@@ -226,6 +252,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				629ACB0F1990141800363D3B /* page2.png in Resources */,
+				629ACB0D1990141000363D3B /* page1.png in Resources */,
+				629ACB111990141E00363D3B /* page3.png in Resources */,
+				629ACB131990142400363D3B /* page4.png in Resources */,
 				62C612DC1980D31E005200D4 /* Images.xcassets in Resources */,
 				62D6588519870F170002D4D3 /* DreamOrient.storyboard in Resources */,
 			);
@@ -248,6 +278,7 @@
 				62D658821986E9A70002D4D3 /* Dream.swift in Sources */,
 				62ACF8B0198B567E00D08AF1 /* RuleEditViewController.swift in Sources */,
 				629ACACC198F00DB00363D3B /* CoreDataUtils.swift in Sources */,
+				629ACB0B1990074400363D3B /* PageContentViewController.swift in Sources */,
 				62D6586E19837F000002D4D3 /* CoreDataStore.swift in Sources */,
 				62D6587E1986E9A70002D4D3 /* Rule.swift in Sources */,
 				62D6588919880C5A0002D4D3 /* DreamEditViewController.swift in Sources */,
@@ -256,6 +287,7 @@
 				62D658801986E9A70002D4D3 /* Actor.swift in Sources */,
 				62D65887198765C90002D4D3 /* DreamListTableViewController.swift in Sources */,
 				62C612DA1980D31E005200D4 /* DreamOrient.xcdatamodeld in Sources */,
+				629ACACE198FF17400363D3B /* HomeViewController.swift in Sources */,
 				62C612D71980D31E005200D4 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

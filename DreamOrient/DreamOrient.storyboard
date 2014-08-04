@@ -4,10 +4,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6190.4"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Home View Controller-->
         <scene sceneID="3dQ-ks-nqk">
             <objects>
-                <viewController id="JkE-qv-QHP" sceneMemberID="viewController">
+                <viewController id="JkE-qv-QHP" customClass="HomeViewController" customModule="DreamOrient" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="qsF-NM-Hlw"/>
                         <viewControllerLayoutGuide type="bottom" id="fsy-nJ-57Q"/>
@@ -15,16 +15,7 @@
                     <view key="view" contentMode="redraw" id="ei5-2p-Gin">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="SwimWays_Submorphers" translatesAutoresizingMaskIntoConstraints="NO" id="wFi-iW-bmR">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                            </imageView>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="centerX" secondItem="wFi-iW-bmR" secondAttribute="centerX" id="2AF-a2-TrN"/>
-                            <constraint firstAttribute="centerY" secondItem="wFi-iW-bmR" secondAttribute="centerY" id="9OX-Hl-QnH"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="pAO-6O-Lpi">
                         <barButtonItem key="rightBarButtonItem" systemItem="action" id="2k0-O0-DBx">
@@ -37,6 +28,58 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2C7-as-RDH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1018" y="309"/>
+        </scene>
+        <!--Page View Controller-->
+        <scene sceneID="TV9-Le-j61">
+            <objects>
+                <pageViewController storyboardIdentifier="PageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="Uya-f6-Jmv" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Q4c-Ur-rS0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1017" y="960"/>
+        </scene>
+        <!--Page Content View Controller-->
+        <scene sceneID="TMR-c6-PIr">
+            <objects>
+                <viewController storyboardIdentifier="PageContentViewController" id="sUT-ea-xjA" customClass="PageContentViewController" customModule="DreamOrient" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="4BV-UL-hvj"/>
+                        <viewControllerLayoutGuide type="bottom" id="cVS-Ll-OaZ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="gyk-mS-xFP">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9UP-Mv-HrQ">
+                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
+                            </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JQA-Z5-bby">
+                                <rect key="frame" x="234" y="52" width="132" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="132" id="bEW-rb-bvs"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="JQA-Z5-bby" firstAttribute="top" secondItem="4BV-UL-hvj" secondAttribute="bottom" constant="8" id="0Jl-Lr-gRo"/>
+                            <constraint firstAttribute="trailing" secondItem="9UP-Mv-HrQ" secondAttribute="trailing" id="87W-t2-oxK"/>
+                            <constraint firstItem="JQA-Z5-bby" firstAttribute="centerX" secondItem="9UP-Mv-HrQ" secondAttribute="centerX" id="9pB-db-xKm"/>
+                            <constraint firstAttribute="bottom" secondItem="9UP-Mv-HrQ" secondAttribute="bottom" id="Gp5-WT-8Hd"/>
+                            <constraint firstItem="9UP-Mv-HrQ" firstAttribute="leading" secondItem="gyk-mS-xFP" secondAttribute="leading" id="e1T-17-D6R"/>
+                            <constraint firstItem="9UP-Mv-HrQ" firstAttribute="top" secondItem="gyk-mS-xFP" secondAttribute="top" constant="20" symbolic="YES" id="qXb-Pu-mzE"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="backgroundImageView" destination="9UP-Mv-HrQ" id="PUb-jc-5I3"/>
+                        <outlet property="titleLabel" destination="JQA-Z5-bby" id="On6-c4-BC0"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="N9G-jA-asZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1017" y="1609"/>
         </scene>
         <!--Dreams-->
         <scene sceneID="RNS-Xb-j8v">
@@ -226,9 +269,6 @@
             <point key="canvasLocation" x="206" y="309"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="SwimWays_Submorphers" width="500" height="375"/>
-    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="jR5-5c-s3m"/>
     </inferredMetricsTieBreakers>
