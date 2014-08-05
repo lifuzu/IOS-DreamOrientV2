@@ -35,8 +35,8 @@ class RuleListTableViewController: UITableViewController, NSFetchedResultsContro
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        // Display an Edit button in the navigation bar for this view controller.
+        self.navigationItem.rightBarButtonItem = self.editButtonItem()
 
         // If we got the dream then list the rules which related to the dream
         if self.dreamID {
@@ -84,7 +84,14 @@ class RuleListTableViewController: UITableViewController, NSFetchedResultsContro
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        NSLog("View will be appear")
+        // Display toolbar
+        self.navigationController.setToolbarHidden(false, animated: true)
+    }
+
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        // Hide toolbar
+        self.navigationController.setToolbarHidden(true, animated: true)
     }
 
     override func willMoveToParentViewController(parent: UIViewController!) {
@@ -198,20 +205,16 @@ class RuleListTableViewController: UITableViewController, NSFetchedResultsContro
         }    
     }
 
-    /*
     // Override to support rearranging the table view.
     override func tableView(tableView: UITableView!, moveRowAtIndexPath fromIndexPath: NSIndexPath!, toIndexPath: NSIndexPath!) {
 
     }
-    */
 
-    /*
     // Override to support conditional rearranging of the table view.
     override func tableView(tableView: UITableView!, canMoveRowAtIndexPath indexPath: NSIndexPath!) -> Bool {
         // Return NO if you do not want the item to be re-orderable.
         return true
     }
-    */
 
     // MARK: - Navigation
 

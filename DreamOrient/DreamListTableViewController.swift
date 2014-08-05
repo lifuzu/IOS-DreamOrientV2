@@ -61,8 +61,18 @@ class DreamListTableViewController: UITableViewController, NSFetchedResultsContr
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        // Display an Edit button in the navigation bar for this view controller.
+        self.navigationItem.rightBarButtonItem = self.editButtonItem()
+    }
+
+    override func viewWillAppear(animated: Bool) {
+        // Display toolbar
+        self.navigationController.setToolbarHidden(false, animated: true)
+    }
+
+    override func viewWillDisappear(animated: Bool) {
+        // Hide toolbar
+        self.navigationController.setToolbarHidden(true, animated: true)
     }
 
     // Notify the receiver that the fetched results controller has completed processing

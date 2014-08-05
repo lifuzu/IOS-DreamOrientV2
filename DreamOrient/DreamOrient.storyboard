@@ -81,7 +81,7 @@
             </objects>
             <point key="canvasLocation" x="1017" y="1609"/>
         </scene>
-        <!--Dreams-->
+        <!--Dream-->
         <scene sceneID="RNS-Xb-j8v">
             <objects>
                 <tableViewController id="95V-FG-BcC" customClass="DreamListTableViewController" customModule="DreamOrient" customModuleProvider="target" sceneMemberID="viewController">
@@ -90,7 +90,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="DreamCell" textLabel="fAu-XP-jPP" detailTextLabel="vws-5e-FIv" style="IBUITableViewCellStyleValue1" id="nur-5a-nRK">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" showsReorderControl="YES" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="DreamCell" textLabel="fAu-XP-jPP" detailTextLabel="vws-5e-FIv" style="IBUITableViewCellStyleValue1" id="nur-5a-nRK">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nur-5a-nRK" id="Ut3-Ed-bS3">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -120,14 +120,14 @@
                             <outlet property="delegate" destination="95V-FG-BcC" id="VOb-yj-awF"/>
                         </connections>
                     </tableView>
-                    <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Dreams" id="fmt-Ss-cCD">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="TDi-Ac-UoB">
+                    <toolbarItems>
+                        <barButtonItem systemItem="add" id="dsj-WD-94X">
                             <connections>
-                                <segue destination="1eF-K0-wpl" kind="show" identifier="dreamAdd" id="fns-Vf-Ety"/>
+                                <segue destination="1eF-K0-wpl" kind="show" id="N8c-ZS-aaf"/>
                             </connections>
                         </barButtonItem>
-                    </navigationItem>
+                    </toolbarItems>
+                    <navigationItem key="navigationItem" title="Dream" id="L3y-BG-UkD"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sbx-jx-jbd" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -143,7 +143,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="checkmark" indentationWidth="10" reuseIdentifier="RuleCell" editingAccessoryType="detailButton" textLabel="K7y-5r-OhD" detailTextLabel="Bf4-64-WmD" style="IBUITableViewCellStyleValue1" id="PyX-d2-3ka">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" showsReorderControl="YES" accessoryType="checkmark" indentationWidth="10" reuseIdentifier="RuleCell" textLabel="K7y-5r-OhD" detailTextLabel="Bf4-64-WmD" style="IBUITableViewCellStyleValue1" id="PyX-d2-3ka">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PyX-d2-3ka" id="uSy-Tc-wFl">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -169,14 +169,14 @@
                             <outlet property="delegate" destination="h1y-xl-VxG" id="SHa-uE-3k8"/>
                         </connections>
                     </tableView>
-                    <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Rules" id="v7L-er-tTP">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="FlH-hQ-iOJ">
+                    <toolbarItems>
+                        <barButtonItem systemItem="add" id="FlH-hQ-iOJ">
                             <connections>
                                 <segue destination="xgG-Zy-cQ1" kind="show" identifier="ruleAdd" id="fZw-oF-qUE"/>
                             </connections>
                         </barButtonItem>
-                    </navigationItem>
+                    </toolbarItems>
+                    <navigationItem key="navigationItem" title="Rules" id="v7L-er-tTP"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aDd-Id-gRl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
