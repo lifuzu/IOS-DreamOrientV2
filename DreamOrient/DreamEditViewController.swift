@@ -86,6 +86,7 @@ class DreamEditViewController: UIViewController {
         } else {
             dream.credits = 30
         }
+        dream.no = CoreDataUtils.getNextAvailableId(managedObjectContext: self.managedObjectContext!, entityName: "Dream", key: "no")
         dream.entityId = NSUUID.UUID().UUIDString
 
         // Save the new dream

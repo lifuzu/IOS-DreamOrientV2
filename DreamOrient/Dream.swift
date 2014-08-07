@@ -12,6 +12,7 @@ import CoreData
 @objc(Dream)
 class Dream: NSManagedObject {
 
+    @NSManaged var no: NSNumber
     @NSManaged var name: String
     @NSManaged var credits: NSNumber
     @NSManaged var entityId: String

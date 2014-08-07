@@ -50,7 +50,7 @@ class RuleListTableViewController: UITableViewController, NSFetchedResultsContro
             }
 
             // Get the fetch result controller with predicate
-            ruleFRC = CoreDataUtils.getFetchedResultControllerWithPredicate(managedObjectContext: self.managedObjectContext!, entityName: "Rule", sortKey: "name", predicateKey: "dream.entityId == %@", predicateValue: dream.entityId)
+            ruleFRC = CoreDataUtils.getFetchedResultControllerWithPredicate(managedObjectContext: self.managedObjectContext!, entityName: "Rule", sortKey: "no", predicateKey: "dream.entityId == %@", predicateValue: dream.entityId)
             // Notify the view controller when the fetched results change
             ruleFRC!.delegate = self
 
@@ -207,7 +207,12 @@ class RuleListTableViewController: UITableViewController, NSFetchedResultsContro
 
     // Override to support rearranging the table view.
     override func tableView(tableView: UITableView!, moveRowAtIndexPath fromIndexPath: NSIndexPath!, toIndexPath: NSIndexPath!) {
-
+        // Get the object at the given index path in the fetch results
+        var ruleFromIndexPath = ruleFRC!.objectAtIndexPath(fromIndexPath) as Rule
+        ruleFromIndexPath.no = toIndexPath.row
+        // Get the object at the given index path in the fetch results
+        var ruleToIndexPath = ruleFRC!.objectAtIndexPath(toIndexPath) as Rule
+        ruleToIndexPath.no = fromIndexPath.row
     }
 
     // Override to support conditional rearranging of the table view.

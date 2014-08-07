@@ -87,6 +87,7 @@ class RuleEditViewController: UIViewController {
             newItem.credits = 3
         }
         newItem.desc = "\(newItem.credits)"
+        newItem.no = CoreDataUtils.getNextAvailableId(managedObjectContext: self.managedObjectContext!, entityName: "Rule", key: "no")
         newItem.entityId = NSUUID.UUID().UUIDString
         newItem.createdAt = NSDate.date()
         newItem.modifiedAt = newItem.createdAt

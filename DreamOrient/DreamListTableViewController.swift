@@ -28,7 +28,7 @@ class DreamListTableViewController: UITableViewController, NSFetchedResultsContr
         }
 
         // Get the fetch result controller
-        dreamFRC = CoreDataUtils.getFetchedResultController(managedObjectContext: self.managedObjectContext!, entityName: "Dream", sortKey: "name")
+        dreamFRC = CoreDataUtils.getFetchedResultController(managedObjectContext: self.managedObjectContext!, entityName: "Dream", sortKey: "no", sortKey2: "name")
         // Notify the view controller when the fetched results change
         dreamFRC!.delegate = self
 
@@ -160,7 +160,12 @@ class DreamListTableViewController: UITableViewController, NSFetchedResultsContr
 
     // Override to support rearranging the table view.
     override func tableView(tableView: UITableView!, moveRowAtIndexPath fromIndexPath: NSIndexPath!, toIndexPath: NSIndexPath!) {
-
+        // Get the dream object at the given index path in the fetch results
+        var dreamFromIndexPath = dreamFRC!.objectAtIndexPath(fromIndexPath) as Dream
+        dreamFromIndexPath.no = toIndexPath.row
+        // Get the dream object at the given index path in the fetch results
+        var dreamToIndexPath = dreamFRC!.objectAtIndexPath(toIndexPath) as Dream
+        dreamToIndexPath.no = fromIndexPath.row
     }
 
     // Override to support conditional rearranging of the table view.

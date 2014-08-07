@@ -12,6 +12,7 @@ import CoreData
 @objc(Rule)
 class Rule: NSManagedObject {
 
+    @NSManaged var no: NSNumber
     @NSManaged var name: String
     @NSManaged var credits: NSNumber
     @NSManaged var desc: String

@@ -4,12 +4,14 @@
         <attribute name="credits" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="entityId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="no" optional="YES" attributeType="Integer 16" defaultValueString="0" indexed="YES" syncable="YES"/>
         <relationship name="dreams" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Dream" inverseName="actor" inverseEntity="Dream" syncable="YES"/>
     </entity>
     <entity name="Dream" representedClassName="Dream" syncable="YES">
         <attribute name="credits" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="entityId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="no" optional="YES" attributeType="Integer 16" defaultValueString="0" indexed="YES" syncable="YES"/>
         <relationship name="actor" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Actor" inverseName="dreams" inverseEntity="Actor" syncable="YES"/>
         <relationship name="rules" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Rule" inverseName="dream" inverseEntity="Rule" syncable="YES"/>
     </entity>
@@ -20,11 +22,12 @@
         <attribute name="entityId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="modifiedAt" optional="YES" attributeType="Date" defaultDateTimeInterval="0" defaultValueString="NSDate.date()" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="no" optional="YES" attributeType="Integer 16" defaultValueString="0" indexed="YES" syncable="YES"/>
         <relationship name="dream" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Dream" inverseName="rules" inverseEntity="Dream" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Actor" positionX="-45" positionY="63" width="128" height="103"/>
-        <element name="Dream" positionX="-54" positionY="36" width="128" height="118"/>
-        <element name="Rule" positionX="-63" positionY="-18" width="128" height="150"/>
+        <element name="Actor" positionX="-45" positionY="63" width="128" height="118"/>
+        <element name="Dream" positionX="-54" positionY="36" width="128" height="133"/>
+        <element name="Rule" positionX="-63" positionY="-18" width="128" height="163"/>
     </elements>
 </model>

@@ -368,6 +368,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         newRule1.name = "one rule"
         newRule1.credits = 2
+        newRule1.no = CoreDataUtils.getNextAvailableId(managedObjectContext: self.cdhelper.managedObjectContext, entityName: "Rule", key: "no")
         newRule1.desc = newRule1.name + "\(newRule1.credits)"
         newRule1.entityId = NSUUID.UUID().UUIDString
         newRule1.createdAt = NSDate.date()
@@ -379,6 +380,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         newRule2.name = "another rule"
         newRule2.credits = 3
+        newRule2.no = CoreDataUtils.getNextAvailableId(managedObjectContext: self.cdhelper.managedObjectContext, entityName: "Rule", key: "no")
         newRule2.desc = newRule2.name + "\(newRule2.credits)"
         newRule2.entityId = NSUUID.UUID().UUIDString
         newRule2.createdAt = NSDate.date()
@@ -390,6 +392,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         newRule3.name = "another rule"
         newRule3.credits = 4
+        newRule3.no = CoreDataUtils.getNextAvailableId(managedObjectContext: self.cdhelper.managedObjectContext, entityName: "Rule", key: "no")
         newRule3.desc = newRule3.name + "\(newRule3.credits)"
         newRule3.entityId = NSUUID.UUID().UUIDString
         newRule3.createdAt = NSDate.date()
@@ -400,10 +403,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // create a dream
         var newDream: Dream = NSEntityDescription.insertNewObjectForEntityForName("Dream", inManagedObjectContext: self.cdhelper.managedObjectContext) as Dream
 
-        newDream.name = "anew dream"
+        newDream.name = "anyw dream"
+        newDream.no = CoreDataUtils.getNextAvailableId(managedObjectContext: self.cdhelper.managedObjectContext, entityName: "Dream", key: "no")
         newDream.credits = 20
         newDream.entityId = NSUUID.UUID().UUIDString
-        NSLog("Created A New Dream for \(newDream.name) + \(newDream.credits) + \(newDream.entityId) ")
+        NSLog("Created A New Dream for \(newDream.name) + \(newDream.credits) + \(newDream.entityId) + \(newDream.no) ")
         self.cdhelper.saveContext(self.cdhelper.managedObjectContext)
 
         // setup a relationship
@@ -427,9 +431,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var newDream2: Dream = NSEntityDescription.insertNewObjectForEntityForName("Dream", inManagedObjectContext: self.cdhelper.managedObjectContext) as Dream
         
         newDream2.name = "another dream"
+        newDream2.no = CoreDataUtils.getNextAvailableId(managedObjectContext: self.cdhelper.managedObjectContext, entityName: "Dream", key: "no")
         newDream2.credits = 30
         newDream2.entityId = NSUUID.UUID().UUIDString
-        NSLog("Created Aother Dream for \(newDream2.name) + \(newDream2.credits) + \(newDream2.entityId) ")
+        NSLog("Created Aother Dream for \(newDream2.name) + \(newDream2.credits) + \(newDream2.entityId) + \(newDream2.no) ")
         self.cdhelper.saveContext(self.cdhelper.managedObjectContext)
         
         // setup a relationship
