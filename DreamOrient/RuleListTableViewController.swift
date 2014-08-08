@@ -97,15 +97,22 @@ class RuleListTableViewController: UITableViewController, NSFetchedResultsContro
     override func willMoveToParentViewController(parent: UIViewController!) {
         NSLog("Summary of credits: \(self.creditsSum)")
 
-        if self.actor {
-            // Update the credit of actorr
-            self.actor!.credits = self.creditsSum + self.actor!.credits.integerValue
+        if self.dreamID {
+            var error: NSError? = nil
+            // Get the existing object according to the ID
+            var dream = self.managedObjectContext!.existingObjectWithID(self.dreamID, error: &error) as Dream
+            if (dream == nil) {
+                NSLog("Failed to get the existing dream according to the dreamID")
+                abort()
+            }
+            // Update the gains of dream
+            dream.gains = self.creditsSum + dream.gains.integerValue
 
             if self.creditsSum != 0 {
                 // Save the change
                 var error: NSError? = nil
                 if (self.managedObjectContext!.save(&error)) {
-                    NSLog("Saved Actor for \(self.actor!.name) + \(self.actor!.credits) + \(self.actor!.entityId)")
+                    NSLog("Saved gains for \(dream.name) + \(dream.gains) + \(dream.credits) + \(dream.entityId)")
                 } else {
                     NSLog("Failed to save the Actor - %@", error!)
                 }

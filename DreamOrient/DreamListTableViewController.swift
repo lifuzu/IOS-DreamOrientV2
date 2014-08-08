@@ -113,7 +113,7 @@ class DreamListTableViewController: UITableViewController, NSFetchedResultsContr
 
         // Display text for the cell view
         cell.textLabel.text = dream.name
-        cell.detailTextLabel.text = "\(dream.actor.credits)/\(dream.credits)"
+        cell.detailTextLabel.text = "\(dream.gains)/\(dream.credits)"
 
         // Set the accessory view to be a clickable button - commented, since we can set it with IB
         //cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator

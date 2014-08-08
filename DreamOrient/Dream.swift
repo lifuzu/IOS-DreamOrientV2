@@ -15,6 +15,7 @@ class Dream: NSManagedObject {
     @NSManaged var no: NSNumber
     @NSManaged var name: String
     @NSManaged var credits: NSNumber
+    @NSManaged var gains: NSNumber
     @NSManaged var entityId: String
     @NSManaged var rules: NSMutableSet
     @NSManaged var actor: Actor
