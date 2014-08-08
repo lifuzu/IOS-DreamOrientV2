@@ -17,6 +17,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <toolbarItems>
+                        <barButtonItem systemItem="add" id="OVn-ok-MAE"/>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" id="pAO-6O-Lpi">
                         <barButtonItem key="rightBarButtonItem" systemItem="action" id="2k0-O0-DBx">
                             <connections>
@@ -24,6 +27,7 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2C7-as-RDH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -38,6 +38,16 @@ class HomeViewController: UIViewController, UIPageViewControllerDataSource {
         self.pageViewController.didMoveToParentViewController(self)
     }
 
+    override func viewWillAppear(animated: Bool) {
+        // Display toolbar
+        self.navigationController.setToolbarHidden(false, animated: true)
+    }
+
+    override func viewWillDisappear(animated: Bool) {
+        // Hide toolbar
+        self.navigationController.setToolbarHidden(true, animated: true)
+    }
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
