@@ -18,7 +18,7 @@ class RuleListTableViewController: UITableViewController, NSFetchedResultsContro
     var dreamID: NSManagedObjectID?
     var creditsSum: Int = 0
 
-    init(coder aDecoder: NSCoder!) {
+    required init(coder aDecoder: NSCoder!) {
         super.init(coder: aDecoder)
         NSLog("Initialize Rule List Table View Controller")
 
@@ -39,7 +39,7 @@ class RuleListTableViewController: UITableViewController, NSFetchedResultsContro
         self.navigationItem.rightBarButtonItem = self.editButtonItem()
 
         // If we got the dream then list the rules which related to the dream
-        if self.dreamID {
+        if self.dreamID != nil {
             var error: NSError? = nil
 
             // Get the existing object according to the ID
@@ -75,7 +75,7 @@ class RuleListTableViewController: UITableViewController, NSFetchedResultsContro
 
             // Execute fetch request
             var result = self.managedObjectContext!.executeFetchRequest(fetchRequest2, error:&error)
-            if error { NSLog("%@", error!) }
+            if error != nil { NSLog("%@", error!) }
             NSLog("fetched actor count: \(result.count)")
             self.actor = (result[result.count - 1] as Actor)
             NSLog("Fetched Actor for \(self.actor?.name) + \(self.actor?.credits) + \(self.actor?.entityId)")
@@ -97,7 +97,7 @@ class RuleListTableViewController: UITableViewController, NSFetchedResultsContro
     override func willMoveToParentViewController(parent: UIViewController!) {
         NSLog("Summary of credits: \(self.creditsSum)")
 
-        if self.dreamID {
+        if self.dreamID != nil {
             var error: NSError? = nil
             // Get the existing object according to the ID
             var dream = self.managedObjectContext!.existingObjectWithID(self.dreamID, error: &error) as Dream

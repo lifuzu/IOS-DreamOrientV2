@@ -17,7 +17,7 @@ class CoreDataStore: NSObject{
     // Returns the managed object model for the application.
     // If the model doesn't already exist, it is created from the application's model.
     var managedObjectModel: NSManagedObjectModel {
-    if !_managedObjectModel {
+    if _managedObjectModel == nil {
         let modelURL = NSBundle.mainBundle().URLForResource(storeName, withExtension: "momd")
         _managedObjectModel = NSManagedObjectModel(contentsOfURL: modelURL)
         }
@@ -28,7 +28,7 @@ class CoreDataStore: NSObject{
     // Returns the persistent store coordinator for the application.
     // If the coordinator doesn't already exist, it is created and the application's store added to it.
     var persistentStoreCoordinator: NSPersistentStoreCoordinator {
-        if !_persistentStoreCoordinator {
+        if _persistentStoreCoordinator == nil {
             let storeURL = self.applicationDocumentsDirectory.URLByAppendingPathComponent(storeFilename)
             println(storeURL)
             var error: NSError? = nil

@@ -18,7 +18,7 @@ class DreamListTableViewController: UITableViewController, NSFetchedResultsContr
     // Define actorFRC only for update actor credits automatically
     var actorFRC: NSFetchedResultsController?
 
-    init(coder aDecoder: NSCoder!) {
+    required init(coder aDecoder: NSCoder!) {
         super.init(coder: aDecoder)
         NSLog("Initialize Dream List Table View Controller")
 

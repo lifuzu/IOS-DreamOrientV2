@@ -20,7 +20,7 @@ class RuleEditViewController: UIViewController {
     @IBOutlet var name: UITextField!
     @IBOutlet var credits: UITextField!
 
-    init(coder aDecoder: NSCoder!) {
+    required init(coder aDecoder: NSCoder!) {
         super.init(coder: aDecoder)
         // Initialize variables.
         println("Initialize Rule Edit View Controller")
@@ -81,7 +81,7 @@ class RuleEditViewController: UIViewController {
 
         // assign values
         newItem.name = paramName
-        if paramCredits {
+        if paramCredits != nil {
             newItem.credits = paramCredits!
         } else {
             newItem.credits = 3

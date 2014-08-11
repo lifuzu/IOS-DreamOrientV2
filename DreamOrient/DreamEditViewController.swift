@@ -18,7 +18,7 @@ class DreamEditViewController: UIViewController {
     @IBOutlet var name: UITextField!
     @IBOutlet var credits: UITextField!
 
-    init(coder aDecoder: NSCoder!) {
+    required init(coder aDecoder: NSCoder!) {
         super.init(coder: aDecoder)
         // Initialize variables.
         println("Initialize Dream Edit View Controller")
@@ -81,7 +81,7 @@ class DreamEditViewController: UIViewController {
 
         // assign values
         dream.name = paramName
-        if paramCredits {
+        if paramCredits != nil {
             dream.credits = paramCredits!
         } else {
             dream.credits = 30
@@ -118,7 +118,7 @@ class DreamEditViewController: UIViewController {
 
         // assign values
         dream.name = paramName
-        if paramCredits {
+        if paramCredits != nil {
             dream.credits = paramCredits!
         } else {
             dream.credits = 30

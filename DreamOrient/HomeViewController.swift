@@ -69,20 +69,20 @@ class HomeViewController: UIViewController, UIPageViewControllerDataSource {
 
     // #pragma mark - Page View Controller Data Source
     func pageViewController(pageViewController: UIPageViewController!, viewControllerBeforeViewController viewController: UIViewController!) -> UIViewController! {
-        var index = (viewController as PageContentViewController).pageIndex as Int
+        var index = (viewController as PageContentViewController).pageIndex as Int!
 
         if (index == 0) {
             return nil
         }
 
-        index--
+        index!--
         return self.viewControllerAtIndex(index)
     }
 
     func pageViewController(pageViewController: UIPageViewController!, viewControllerAfterViewController viewController: UIViewController!) -> UIViewController! {
-        var index = (viewController as PageContentViewController).pageIndex as Int
+        var index = (viewController as PageContentViewController).pageIndex as Int!
 
-        index++
+        index!++
         if (index == self.pageTitles.count) {
             return nil
         }

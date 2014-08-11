@@ -13,7 +13,7 @@ class CoreDataHelper: NSObject{
     
     let store: CoreDataStore!
     
-    init(){
+    override init(){
         super.init()
         
         // all CoreDataHelper share one CoreDataStore defined in AppDelegate
@@ -36,7 +36,7 @@ class CoreDataHelper: NSObject{
     
     // main thread context
     var managedObjectContext: NSManagedObjectContext {
-        if !_managedObjectContext {
+        if _managedObjectContext == nil {
             let coordinator = self.store.persistentStoreCoordinator
             if coordinator != nil {
                 _managedObjectContext = NSManagedObjectContext(concurrencyType: NSManagedObjectContextConcurrencyType.MainQueueConcurrencyType)
@@ -52,7 +52,7 @@ class CoreDataHelper: NSObject{
     // If the context doesn't already exist, it is created and bound to the persistent store coordinator for the application.
     
     var backgroundContext: NSManagedObjectContext {
-    if !_backgroundContext {
+    if _backgroundContext == nil {
         let coordinator = self.store.persistentStoreCoordinator
         if coordinator != nil {
             _backgroundContext = NSManagedObjectContext(concurrencyType: NSManagedObjectContextConcurrencyType.PrivateQueueConcurrencyType)

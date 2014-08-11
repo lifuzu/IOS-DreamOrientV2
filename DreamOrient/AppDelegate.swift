@@ -64,7 +64,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // #pragma mark - Core Data Helper
     
     var cdstore: CoreDataStore {
-        if !_cdstore {
+        if _cdstore == nil {
             _cdstore = CoreDataStore()
         }
         return _cdstore!
@@ -72,7 +72,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var _cdstore: CoreDataStore? = nil
     
     var cdhelper: CoreDataHelper {
-        if !_cdhelper {
+        if _cdhelper == nil {
             _cdhelper = CoreDataHelper()
         }
         return _cdhelper!
@@ -544,7 +544,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         fReq.sortDescriptors = [sorter]
 
         result = self.cdhelper.backgroundContext.executeFetchRequest(fReq, error:&error)
-        if error { NSLog("%@", error!) }
+        if error != nil { NSLog("%@", error!) }
         NSLog("fetched rule count: \(result.count)")
         for resultItem : AnyObject in result {
             var newItem = resultItem as Rule
@@ -572,7 +572,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         fReq.sortDescriptors = [sorter]
 
         result = self.cdhelper.backgroundContext.executeFetchRequest(fReq, error:&error)
-        if error { NSLog("%@", error!) }
+        if error != nil { NSLog("%@", error!) }
         NSLog("fetched actor count: \(result.count)")
         for resultItem : AnyObject in result {
             var newItem = resultItem as Actor
