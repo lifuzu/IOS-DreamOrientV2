@@ -17,6 +17,8 @@ class Dream: NSManagedObject {
     @NSManaged var credits: NSNumber
     @NSManaged var gains: NSNumber
     @NSManaged var entityId: String
+    // status: created | ongoing | achieved | introspectived
+    @NSManaged var status: String
     @NSManaged var rules: NSMutableSet
     @NSManaged var actor: Actor
 
