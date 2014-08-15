@@ -2,6 +2,7 @@
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6220.8" systemVersion="13E28" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Actor" representedClassName="Actor" syncable="YES">
         <attribute name="credits" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="displayName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="entityId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="no" optional="YES" attributeType="Integer 16" defaultValueString="0" indexed="YES" syncable="YES"/>
@@ -28,7 +29,7 @@
         <relationship name="dream" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Dream" inverseName="rules" inverseEntity="Dream" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Actor" positionX="-45" positionY="63" width="128" height="118"/>
+        <element name="Actor" positionX="-45" positionY="63" width="128" height="135"/>
         <element name="Dream" positionX="-54" positionY="36" width="128" height="165"/>
         <element name="Rule" positionX="-63" positionY="-18" width="128" height="163"/>
     </elements>

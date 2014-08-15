@@ -14,6 +14,7 @@ class Actor: NSManagedObject {
 
     @NSManaged var no: NSNumber
     @NSManaged var name: String
+    @NSManaged var displayName: String
     @NSManaged var credits: NSNumber
     @NSManaged var entityId: String
     @NSManaged var dreams: NSMutableSet
