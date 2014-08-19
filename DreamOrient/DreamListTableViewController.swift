@@ -28,7 +28,8 @@ class DreamListTableViewController: UITableViewController, NSFetchedResultsContr
         }
 
         // Get the fetch result controller
-        dreamFRC = CoreDataUtils.getFetchedResultController(managedObjectContext: self.managedObjectContext!, entityName: "Dream", sortKey: "no", sortKey2: "name")
+        let entityDream: NSString = "Dream"
+        dreamFRC = CoreDataUtils.getFetchedResultController(managedObjectContext: self.managedObjectContext!, entityName: entityDream, sortKey: "no", sortKey2: "name")
         // Notify the view controller when the fetched results change
         dreamFRC!.delegate = self
 
@@ -41,7 +42,8 @@ class DreamListTableViewController: UITableViewController, NSFetchedResultsContr
         }
 
         // Get the fetch result controller
-        actorFRC = CoreDataUtils.getFetchedResultController(managedObjectContext: self.managedObjectContext!, entityName: "Actor", sortKey: "name")
+        let entityActor: NSString = "Actor"
+        actorFRC = CoreDataUtils.getFetchedResultController(managedObjectContext: self.managedObjectContext!, entityName: entityActor, sortKey: "name")
         // Notify the view controller when the fetched results change
         actorFRC!.delegate = self
 

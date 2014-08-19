@@ -50,7 +50,8 @@ class RuleListTableViewController: UITableViewController, NSFetchedResultsContro
             }
 
             // Get the fetch result controller with predicate
-            ruleFRC = CoreDataUtils.getFetchedResultControllerWithPredicate(managedObjectContext: self.managedObjectContext!, entityName: "Rule", sortKey: "no", predicateKey: "dream.entityId == %@", predicateValue: dream.entityId)
+            let entityRule: NSString = "Rule"
+            ruleFRC = CoreDataUtils.getFetchedResultControllerWithPredicate(managedObjectContext: self.managedObjectContext!, entityName: entityRule, sortKey: "no", predicateKey: "dream.entityId == %@", predicateValue: dream.entityId)
             // Notify the view controller when the fetched results change
             ruleFRC!.delegate = self
 
@@ -64,7 +65,8 @@ class RuleListTableViewController: UITableViewController, NSFetchedResultsContro
 
             // Create reference to the Actor entity
             // Fetch actor who a dream is in his list
-            var fetchRequest2 = NSFetchRequest(entityName: "Actor")
+            let entityActor: NSString = "Actor"
+            var fetchRequest2 = NSFetchRequest(entityName: entityActor)
             error = nil
             // Set filter
             fetchRequest2.predicate = NSPredicate(format:"dreams CONTAINS %@", dream)

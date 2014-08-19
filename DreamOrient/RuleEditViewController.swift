@@ -73,7 +73,8 @@ class RuleEditViewController: UIViewController {
         }
 
         // Create a new rule which be allocated
-        var newItem = NSEntityDescription.insertNewObjectForEntityForName("Rule", inManagedObjectContext: self.managedObjectContext) as Rule
+        let entityRule: NSString = "Rule"
+        var newItem = NSEntityDescription.insertNewObjectForEntityForName(entityRule, inManagedObjectContext: self.managedObjectContext) as Rule
         if (newItem == nil) {
             NSLog("Failed to create the new rule")
             return success
@@ -87,7 +88,7 @@ class RuleEditViewController: UIViewController {
             newItem.credits = 3
         }
         newItem.desc = "\(newItem.credits)"
-        newItem.no = CoreDataUtils.getNextAvailableId(managedObjectContext: self.managedObjectContext!, entityName: "Rule", key: "no")
+        newItem.no = CoreDataUtils.getNextAvailableId(managedObjectContext: self.managedObjectContext!, entityName: entityRule, key: "no")
         newItem.entityId = NSUUID.UUID().UUIDString
         newItem.createdAt = NSDate.date()
         newItem.modifiedAt = newItem.createdAt

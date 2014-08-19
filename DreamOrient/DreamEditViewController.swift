@@ -73,21 +73,26 @@ class DreamEditViewController: UIViewController {
         }
 
         // Create a new dream which be allocated
-        var dream = NSEntityDescription.insertNewObjectForEntityForName("Dream", inManagedObjectContext: self.managedObjectContext) as Dream
-        if (dream == nil) {
+        let entity: NSString = "Dream"
+        NSLog("New dream was creating!")
+        //var dream = NSEntityDescription.insertNewObjectForEntityForName(entity, inManagedObjectContext: self.managedObjectContext) as Dream
+        if self.managedObjectContext != nil { NSLog("s: " + self.managedObjectContext!.description) }
+        var newItem = NSEntityDescription.insertNewObjectForEntityForName(entity, inManagedObjectContext: self.managedObjectContext) as Dream
+        if (newItem == nil) {
             NSLog("Failed to get the dream object")
             return success
         }
 
         // assign values
-        dream.name = paramName
+        newItem.name = paramName
         if paramCredits != nil {
-            dream.credits = paramCredits!
+            newItem.credits = paramCredits!
         } else {
-            dream.credits = 30
+            newItem.credits = 30
         }
-        dream.no = CoreDataUtils.getNextAvailableId(managedObjectContext: self.managedObjectContext!, entityName: "Dream", key: "no")
-        dream.entityId = NSUUID.UUID().UUIDString
+        NSLog("Get next dream no.!")
+        newItem.no = CoreDataUtils.getNextAvailableId(managedObjectContext: self.managedObjectContext!, entityName: entity, key: "no")
+        newItem.entityId = NSUUID.UUID().UUIDString
 
         // Save the new dream
         var savingError: NSError? = nil

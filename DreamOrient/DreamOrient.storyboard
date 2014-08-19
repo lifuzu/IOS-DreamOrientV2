@@ -12,7 +12,7 @@
                         <viewControllerLayoutGuide type="top" id="qsF-NM-Hlw"/>
                         <viewControllerLayoutGuide type="bottom" id="fsy-nJ-57Q"/>
                     </layoutGuides>
-                    <view key="view" contentMode="redraw" id="ei5-2p-Gin">
+                    <view key="view" contentMode="scaleAspectFill" id="ei5-2p-Gin">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -127,7 +127,7 @@
                     <toolbarItems>
                         <barButtonItem systemItem="add" id="dsj-WD-94X">
                             <connections>
-                                <segue destination="1eF-K0-wpl" kind="show" id="N8c-ZS-aaf"/>
+                                <segue destination="1eF-K0-wpl" kind="show" identifier="dreamAdd" id="N8c-ZS-aaf"/>
                             </connections>
                         </barButtonItem>
                     </toolbarItems>
@@ -274,6 +274,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="jR5-5c-s3m"/>
+        <segue reference="N8c-ZS-aaf"/>
     </inferredMetricsTieBreakers>
 </document>

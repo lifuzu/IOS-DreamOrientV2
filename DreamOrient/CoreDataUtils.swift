@@ -10,7 +10,7 @@ import CoreData
 
 class CoreDataUtils: NSObject, NSFetchedResultsControllerDelegate{
 
-    class func getFetchedResultController(#managedObjectContext: NSManagedObjectContext, entityName paramEntityName: String, sortKey paramSortKey: String) -> NSFetchedResultsController {
+    class func getFetchedResultController(#managedObjectContext: NSManagedObjectContext, entityName paramEntityName: NSString, sortKey paramSortKey: String) -> NSFetchedResultsController {
         let cacheName = "all" + paramEntityName + "sCache"
         // Initialize a fetched results controller to efficiently manage the results
         NSFetchedResultsController.deleteCacheWithName(cacheName)
@@ -18,7 +18,7 @@ class CoreDataUtils: NSObject, NSFetchedResultsControllerDelegate{
         return fetchedResultController
     }
 
-    class func taskFetchRequest(#managedObjectContext: NSManagedObjectContext, entityName paramEntityName: String, sortKey paramSortKey: String) -> NSFetchRequest {
+    class func taskFetchRequest(#managedObjectContext: NSManagedObjectContext, entityName paramEntityName: NSString, sortKey paramSortKey: String) -> NSFetchRequest {
         // Create the fetch request
         var fetchRequest = NSFetchRequest()
 
@@ -37,7 +37,7 @@ class CoreDataUtils: NSObject, NSFetchedResultsControllerDelegate{
     }
 
     // TODO refactor later
-    class func getFetchedResultController(#managedObjectContext: NSManagedObjectContext, entityName paramEntityName: String, sortKey paramSortKey: String, sortKey2 paramSortKey2: String) -> NSFetchedResultsController {
+    class func getFetchedResultController(#managedObjectContext: NSManagedObjectContext, entityName paramEntityName: NSString, sortKey paramSortKey: String, sortKey2 paramSortKey2: String) -> NSFetchedResultsController {
         let cacheName = "all" + paramEntityName + "sCache"
         // Initialize a fetched results controller to efficiently manage the results
         NSFetchedResultsController.deleteCacheWithName(cacheName)
@@ -45,7 +45,7 @@ class CoreDataUtils: NSObject, NSFetchedResultsControllerDelegate{
         return fetchedResultController
     }
 
-    class func taskFetchRequestWith2SortDescriptor(#managedObjectContext: NSManagedObjectContext, entityName paramEntityName: String, sortKey paramSortKey: String, sortKey2 paramSortKey2: String) -> NSFetchRequest {
+    class func taskFetchRequestWith2SortDescriptor(#managedObjectContext: NSManagedObjectContext, entityName paramEntityName: NSString, sortKey paramSortKey: String, sortKey2 paramSortKey2: String) -> NSFetchRequest {
         // Create the fetch request
         var fetchRequest = NSFetchRequest()
 
@@ -64,7 +64,7 @@ class CoreDataUtils: NSObject, NSFetchedResultsControllerDelegate{
         return fetchRequest
     }
 
-    class func getFetchedResultControllerWithPredicate(#managedObjectContext: NSManagedObjectContext, entityName paramEntityName: String, sortKey paramSortKey: String, predicateKey paramPredicateKey: String, predicateValue paramPredicateValue: String) -> NSFetchedResultsController {
+    class func getFetchedResultControllerWithPredicate(#managedObjectContext: NSManagedObjectContext, entityName paramEntityName: NSString, sortKey paramSortKey: String, predicateKey paramPredicateKey: String, predicateValue paramPredicateValue: String) -> NSFetchedResultsController {
         let cacheName = "all" + paramEntityName + "sCache"
         // Initialize a fetched results controller to efficiently manage the results
         NSFetchedResultsController.deleteCacheWithName(cacheName)
@@ -72,7 +72,7 @@ class CoreDataUtils: NSObject, NSFetchedResultsControllerDelegate{
         return fetchedResultController
     }
 
-    class func taskFetchRequest(#managedObjectContext: NSManagedObjectContext, entityName paramEntityName: String, sortKey paramSortKey: String, predicateKey paramPredicateKey: String, predicateValue paramPredicateValue: String) -> NSFetchRequest {
+    class func taskFetchRequest(#managedObjectContext: NSManagedObjectContext, entityName paramEntityName: NSString, sortKey paramSortKey: String, predicateKey paramPredicateKey: String, predicateValue paramPredicateValue: String) -> NSFetchRequest {
         // Create the fetch request
         var fetchRequest = NSFetchRequest()
 
@@ -93,7 +93,7 @@ class CoreDataUtils: NSObject, NSFetchedResultsControllerDelegate{
         return fetchRequest
     }
 
-    class func getNextAvailableId(#managedObjectContext: NSManagedObjectContext, entityName paramEntityName: String, key paramKey: String) -> Int {
+    class func getNextAvailableId(#managedObjectContext: NSManagedObjectContext, entityName paramEntityName: NSString, key paramKey: NSString) -> Int {
         // Create the fetch request
         var fetchRequest = NSFetchRequest()
 

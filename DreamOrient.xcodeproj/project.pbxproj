@@ -15,6 +15,12 @@
 		629ACB111990141E00363D3B /* page3.png in Resources */ = {isa = PBXBuildFile; fileRef = 629ACB101990141E00363D3B /* page3.png */; };
 		629ACB131990142400363D3B /* page4.png in Resources */ = {isa = PBXBuildFile; fileRef = 629ACB121990142400363D3B /* page4.png */; };
 		62ACF8B0198B567E00D08AF1 /* RuleEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62ACF8AF198B567E00D08AF1 /* RuleEditViewController.swift */; };
+		62AF350419A30B1B0015976B /* 70502_box_in.png in Resources */ = {isa = PBXBuildFile; fileRef = 62AF34FE19A30B1B0015976B /* 70502_box_in.png */; };
+		62AF350519A30B1B0015976B /* 70502.png in Resources */ = {isa = PBXBuildFile; fileRef = 62AF34FF19A30B1B0015976B /* 70502.png */; };
+		62AF350619A30B1B0015976B /* 70503_alt1.png in Resources */ = {isa = PBXBuildFile; fileRef = 62AF350019A30B1B0015976B /* 70503_alt1.png */; };
+		62AF350719A30B1B0015976B /* 70503.png in Resources */ = {isa = PBXBuildFile; fileRef = 62AF350119A30B1B0015976B /* 70503.png */; };
+		62AF350819A30B1B0015976B /* 70722_box1_in.png in Resources */ = {isa = PBXBuildFile; fileRef = 62AF350219A30B1B0015976B /* 70722_box1_in.png */; };
+		62AF350919A30B1B0015976B /* 70722.png in Resources */ = {isa = PBXBuildFile; fileRef = 62AF350319A30B1B0015976B /* 70722.png */; };
 		62B0BF9619896666002597E4 /* RuleListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B0BF9519896666002597E4 /* RuleListTableViewController.swift */; };
 		62C612D71980D31E005200D4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C612D61980D31E005200D4 /* AppDelegate.swift */; };
 		62C612DA1980D31E005200D4 /* DreamOrient.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 62C612D81980D31E005200D4 /* DreamOrient.xcdatamodeld */; };
@@ -49,6 +55,12 @@
 		629ACB101990141E00363D3B /* page3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = page3.png; sourceTree = "<group>"; };
 		629ACB121990142400363D3B /* page4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = page4.png; sourceTree = "<group>"; };
 		62ACF8AF198B567E00D08AF1 /* RuleEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RuleEditViewController.swift; sourceTree = "<group>"; };
+		62AF34FE19A30B1B0015976B /* 70502_box_in.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 70502_box_in.png; sourceTree = "<group>"; };
+		62AF34FF19A30B1B0015976B /* 70502.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 70502.png; sourceTree = "<group>"; };
+		62AF350019A30B1B0015976B /* 70503_alt1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 70503_alt1.png; sourceTree = "<group>"; };
+		62AF350119A30B1B0015976B /* 70503.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 70503.png; sourceTree = "<group>"; };
+		62AF350219A30B1B0015976B /* 70722_box1_in.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 70722_box1_in.png; sourceTree = "<group>"; };
+		62AF350319A30B1B0015976B /* 70722.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 70722.png; sourceTree = "<group>"; };
 		62B0BF9519896666002597E4 /* RuleListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RuleListTableViewController.swift; sourceTree = "<group>"; };
 		62C612D11980D31E005200D4 /* DreamOrient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DreamOrient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		62C612D51980D31E005200D4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -89,6 +101,12 @@
 		629ACB14199014B600363D3B /* assets */ = {
 			isa = PBXGroup;
 			children = (
+				62AF34FE19A30B1B0015976B /* 70502_box_in.png */,
+				62AF34FF19A30B1B0015976B /* 70502.png */,
+				62AF350019A30B1B0015976B /* 70503_alt1.png */,
+				62AF350119A30B1B0015976B /* 70503.png */,
+				62AF350219A30B1B0015976B /* 70722_box1_in.png */,
+				62AF350319A30B1B0015976B /* 70722.png */,
 				629ACB121990142400363D3B /* page4.png */,
 				629ACB101990141E00363D3B /* page3.png */,
 				629ACB0E1990141800363D3B /* page2.png */,
@@ -222,6 +240,7 @@
 				TargetAttributes = {
 					62C612D01980D31E005200D4 = {
 						CreatedOnToolsVersion = 6.0;
+						DevelopmentTeam = 7RAR9E88NY;
 					};
 					62C612E01980D31E005200D4 = {
 						CreatedOnToolsVersion = 6.0;
@@ -252,11 +271,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				62AF350819A30B1B0015976B /* 70722_box1_in.png in Resources */,
 				629ACB0F1990141800363D3B /* page2.png in Resources */,
+				62AF350919A30B1B0015976B /* 70722.png in Resources */,
 				629ACB0D1990141000363D3B /* page1.png in Resources */,
+				62AF350519A30B1B0015976B /* 70502.png in Resources */,
 				629ACB111990141E00363D3B /* page3.png in Resources */,
 				629ACB131990142400363D3B /* page4.png in Resources */,
+				62AF350719A30B1B0015976B /* 70503.png in Resources */,
 				62C612DC1980D31E005200D4 /* Images.xcassets in Resources */,
+				62AF350619A30B1B0015976B /* 70503_alt1.png in Resources */,
+				62AF350419A30B1B0015976B /* 70502_box_in.png in Resources */,
 				62D6588519870F170002D4D3 /* DreamOrient.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -396,8 +421,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = DreamOrient/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -411,8 +437,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = DreamOrient/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";

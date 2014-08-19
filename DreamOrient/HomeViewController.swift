@@ -19,8 +19,8 @@ class HomeViewController: UIViewController, UIPageViewControllerDataSource {
         super.viewDidLoad()
 
         // Create the data model
-        pageTitles = ["Over 200 Tips and Tricks", "Discover Hidden Features", "Bookmark Favorite Tip", "Free Regular Update"]
-        pageImages = ["page1.png", "page2.png", "page3.png", "page4.png"]
+        pageTitles = ["LEGO 70502", "LEGO 70502", "LEGO 70503", "LEGO 70503", "LEGO 70722", "LEGO 70722"]
+        pageImages = ["70502.png", "70502_box_in.png", "70503.png", "70503_alt1.png", "70722.png", "70722_box1_in.png"]
 
         // Create page view controller
         self.pageViewController = self.storyboard.instantiateViewControllerWithIdentifier("PageViewController") as UIPageViewController
